@@ -14,8 +14,9 @@
 		69095CD11D43624500ACBFED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69095CCF1D43624500ACBFED /* LaunchScreen.storyboard */; };
 		69095CDF1D43627300ACBFED /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69095CDE1D43627300ACBFED /* KeyboardViewController.swift */; };
 		69095CE31D43627300ACBFED /* TXKeyboardViewController.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 69095CDC1D43627300ACBFED /* TXKeyboardViewController.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		69095CE91D43628A00ACBFED /* AlphabetPlaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69095CE81D43628A00ACBFED /* AlphabetPlaneView.swift */; };
-		69095CEB1D43629800ACBFED /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69095CEA1D43629800ACBFED /* CustomButton.swift */; };
+		69095CE91D43628A00ACBFED /* TXAlphabetPlaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69095CE81D43628A00ACBFED /* TXAlphabetPlaneView.swift */; };
+		69095CEB1D43629800ACBFED /* TXCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69095CEA1D43629800ACBFED /* TXCustomButton.swift */; };
+		69095CED1D438C2B00ACBFED /* TXButtonSizeGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69095CEC1D438C2B00ACBFED /* TXButtonSizeGet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +54,9 @@
 		69095CDC1D43627300ACBFED /* TXKeyboardViewController.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TXKeyboardViewController.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		69095CDE1D43627300ACBFED /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		69095CE01D43627300ACBFED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		69095CE81D43628A00ACBFED /* AlphabetPlaneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphabetPlaneView.swift; sourceTree = "<group>"; };
-		69095CEA1D43629800ACBFED /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		69095CE81D43628A00ACBFED /* TXAlphabetPlaneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TXAlphabetPlaneView.swift; sourceTree = "<group>"; };
+		69095CEA1D43629800ACBFED /* TXCustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TXCustomButton.swift; sourceTree = "<group>"; };
+		69095CEC1D438C2B00ACBFED /* TXButtonSizeGet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TXButtonSizeGet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +112,9 @@
 			isa = PBXGroup;
 			children = (
 				69095CDE1D43627300ACBFED /* KeyboardViewController.swift */,
-				69095CE81D43628A00ACBFED /* AlphabetPlaneView.swift */,
-				69095CEA1D43629800ACBFED /* CustomButton.swift */,
+				69095CE81D43628A00ACBFED /* TXAlphabetPlaneView.swift */,
+				69095CEA1D43629800ACBFED /* TXCustomButton.swift */,
+				69095CEC1D438C2B00ACBFED /* TXButtonSizeGet.swift */,
 				69095CE01D43627300ACBFED /* Info.plist */,
 			);
 			path = TXKeyboardViewController;
@@ -227,9 +230,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69095CE91D43628A00ACBFED /* AlphabetPlaneView.swift in Sources */,
+				69095CE91D43628A00ACBFED /* TXAlphabetPlaneView.swift in Sources */,
 				69095CDF1D43627300ACBFED /* KeyboardViewController.swift in Sources */,
-				69095CEB1D43629800ACBFED /* CustomButton.swift in Sources */,
+				69095CEB1D43629800ACBFED /* TXCustomButton.swift in Sources */,
+				69095CED1D438C2B00ACBFED /* TXButtonSizeGet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +381,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = TXKeyboardViewController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = zhhz.TXInputMethod.TXInputMethod;
+				PRODUCT_BUNDLE_IDENTIFIER = zhhz.TXInputMethod.TXKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -388,7 +392,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = TXKeyboardViewController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = zhhz.TXInputMethod.TXInputMethod;
+				PRODUCT_BUNDLE_IDENTIFIER = zhhz.TXInputMethod.TXKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

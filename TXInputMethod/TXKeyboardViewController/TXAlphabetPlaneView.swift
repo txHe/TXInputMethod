@@ -19,7 +19,7 @@
 import UIKit
 import Foundation
 
-class AlphabetPlaneView : UIView
+class TXAlphabetPlaneView : UIView
 {
     /*------键盘按键的显示title，每一行title因布局不同单独定义-----*/
     var buttonTitles1 = [String]();
@@ -36,6 +36,8 @@ class AlphabetPlaneView : UIView
     var buttonPunc:NormalButton!; //符号键
     var buttonSpace:NormalButton!;//空格按键
     var buttonEnter:NormalButton!;//换行按键
+    
+    let txButtonSizeGet = TXButtonSizeGet.shared;
     
     override init(frame: CGRect)
     {
@@ -67,13 +69,69 @@ class AlphabetPlaneView : UIView
         addConstraintsToInputView(self,rowViews: [row1, row2, row3, row4]);
         
         self.layoutIfNeeded();
+    
+        txButtonSizeGet.setRowHeight([getOriginalHeight(row1),
+                                      getOriginalHeight(row2),
+                                      getOriginalHeight(row3),
+                                      getOriginalHeight(row4)]);
+        
+        self.getButtonViewSize();
+        
         self.backgroundColor = UIColor(red: 209/255.0, green: 213/255.0, blue: 219/255.0, alpha: 1.0);
         self.multipleTouchEnabled = false;
         self.exclusiveTouch = true;
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder)
+    {
         super.init(coder: aDecoder)
+    }
+    
+    func getOriginalHeight(buttonView:UIView) -> CGFloat
+    {
+        
+        return buttonView.frame.origin.y + buttonView.frame.size.height;
+    }
+    
+    func getOriginalWidth(buttonView:UIView)->CGFloat
+    {
+        
+        return buttonView.frame.origin.x + buttonView.frame.size.width;
+    }
+
+    func getButtonViewSize()
+    {
+        var first_row_widths = [CGFloat]();
+        var second_row_widths = [CGFloat]();
+        var third_row_widths = [CGFloat]();
+
+        for i in 0...9
+        {
+            first_row_widths.append(getOriginalWidth(self.buttonAlphabet[i]));
+        }
+        txButtonSizeGet.setFirstRowWidth(first_row_widths);
+        
+        for i in 10...18
+        {
+            second_row_widths.append(getOriginalWidth(self.buttonAlphabet[i]));
+        }
+        txButtonSizeGet.setSecondRowWidth(second_row_widths);
+        
+        
+        third_row_widths.append(getOriginalWidth(self.buttonShift));
+        for i in 19...25
+        {
+            third_row_widths.append(getOriginalWidth(self.buttonAlphabet[i]));
+        }
+        third_row_widths.append(getOriginalWidth(self.buttonDelete));
+        txButtonSizeGet.setThirdRowWidth(third_row_widths);
+        
+        
+        txButtonSizeGet.setFourthRowWidth([self.getOriginalWidth(button123),
+                                           self.getOriginalWidth(buttonEarth),
+                                           self.getOriginalWidth(buttonPunc),
+                                           self.getOriginalWidth(self.buttonSpace),
+                                           self.getOriginalWidth(buttonEnter)]);
     }
     
     /*---------------------------绘制第一行---------------------------*/
@@ -122,12 +180,12 @@ class AlphabetPlaneView : UIView
         var buttons = [UIView]();
         let keyboardRowView = UIView(frame: CGRectMake(0, 0,screenWidth, 50));
         
-        self.buttonShift = ShiftButton(frame:CGRectMake(0.0, 0.0, 50, 30));
+        self.buttonShift = ShiftButton(frame:CGRectMake(0.0, 0.0, 0.0, 0.0));
         buttons.append(self.buttonShift);
         keyboardRowView.addSubview(self.buttonShift);
         
         
-        for i in 0...buttonTitles.count-1
+        for i in 1...buttonTitles.count-2
         {
             let tempButton = createNormalButtonWithTitle(buttonTitles[i]);
             buttonAlphabet.append(tempButton);
@@ -135,7 +193,7 @@ class AlphabetPlaneView : UIView
             keyboardRowView.addSubview(tempButton);
         }
         
-        self.buttonDelete = DeleteButton(frame:CGRectMake(0.0, 0.0, 50, 30));
+        self.buttonDelete = DeleteButton(frame:CGRectMake(0.0, 0.0, 0.0, 0.0));
         buttons.append(self.buttonDelete);
         keyboardRowView.addSubview(self.buttonDelete);
         
@@ -153,7 +211,7 @@ class AlphabetPlaneView : UIView
         self.button123 = createNormalButtonWithTitle(buttonTitles[0]);
         buttons.append(self.button123);
         
-        self.buttonEarth = EarthButton(frame:CGRectMake(0.0, 0.0, 50.0, 30.0));
+        self.buttonEarth = EarthButton(frame:CGRectMake(0.0, 0.0, 0.0, 0.0));
         buttons.append(self.buttonEarth);
         
         self.buttonPunc = createNormalButtonWithTitle(buttonTitles[2]);
@@ -178,7 +236,7 @@ class AlphabetPlaneView : UIView
     /*---------------------------绘制字母的按键---------------------------*/
     func createNormalButtonWithTitle(title: String) -> NormalButton
     {
-        let button = NormalButton(frame:CGRectMake(0, 0.0, 50.0, 30.0));
+        let button = NormalButton(frame:CGRectMake(0, 0.0, 0.0, 0.0));
         button.settitle(title);
         
         return button;

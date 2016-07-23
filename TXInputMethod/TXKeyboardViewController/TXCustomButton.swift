@@ -253,7 +253,7 @@ class ShiftButton: UIView
     
     override func drawRect(rect: CGRect)
     {
-        if(shiftFlag == SHIFT_TAP.SHIFT_ONCE)
+        if(shiftFlag == SHIFT_TYPE.SHIFT_LOWERALWAYS)
         {
             let context:CGContextRef = UIGraphicsGetCurrentContext()!;
             let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 3.0);
@@ -292,7 +292,7 @@ class ShiftButton: UIView
             
             CGContextStrokePath(context);
         }
-        else if(shiftFlag == SHIFT_TAP.SHIFT_TWICE)
+        else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERONCE)
         {
             let tapFillColor:UIColor = UIColor.blackColor();
             
@@ -337,7 +337,7 @@ class ShiftButton: UIView
             CGContextStrokePath(context);
             
         }
-        else if(shiftFlag == SHIFT_TAP.SHIFT_THIRD)
+        else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERALWAYS)
         {
             let tapFillColor:UIColor = UIColor.blackColor();
             
