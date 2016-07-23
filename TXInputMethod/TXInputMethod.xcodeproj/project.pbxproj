@@ -1,0 +1,428 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		69095CC71D43624500ACBFED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69095CC61D43624500ACBFED /* AppDelegate.swift */; };
+		69095CC91D43624500ACBFED /* TXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69095CC81D43624500ACBFED /* TXViewController.swift */; };
+		69095CCC1D43624500ACBFED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69095CCA1D43624500ACBFED /* Main.storyboard */; };
+		69095CCE1D43624500ACBFED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69095CCD1D43624500ACBFED /* Assets.xcassets */; };
+		69095CD11D43624500ACBFED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69095CCF1D43624500ACBFED /* LaunchScreen.storyboard */; };
+		69095CDF1D43627300ACBFED /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69095CDE1D43627300ACBFED /* KeyboardViewController.swift */; };
+		69095CE31D43627300ACBFED /* TXKeyboardViewController.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 69095CDC1D43627300ACBFED /* TXKeyboardViewController.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		69095CE91D43628A00ACBFED /* AlphabetPlaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69095CE81D43628A00ACBFED /* AlphabetPlaneView.swift */; };
+		69095CEB1D43629800ACBFED /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69095CEA1D43629800ACBFED /* CustomButton.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		69095CE11D43627300ACBFED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 69095CBB1D43624500ACBFED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 69095CDB1D43627300ACBFED;
+			remoteInfo = TXKeyboardViewController;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		69095CE71D43627300ACBFED /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				69095CE31D43627300ACBFED /* TXKeyboardViewController.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		69095CC31D43624500ACBFED /* TXInputMethod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TXInputMethod.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		69095CC61D43624500ACBFED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		69095CC81D43624500ACBFED /* TXViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TXViewController.swift; sourceTree = "<group>"; };
+		69095CCB1D43624500ACBFED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		69095CCD1D43624500ACBFED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		69095CD01D43624500ACBFED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		69095CD21D43624500ACBFED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69095CDC1D43627300ACBFED /* TXKeyboardViewController.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TXKeyboardViewController.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		69095CDE1D43627300ACBFED /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		69095CE01D43627300ACBFED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69095CE81D43628A00ACBFED /* AlphabetPlaneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphabetPlaneView.swift; sourceTree = "<group>"; };
+		69095CEA1D43629800ACBFED /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		69095CC01D43624500ACBFED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69095CD91D43627300ACBFED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		69095CBA1D43624500ACBFED = {
+			isa = PBXGroup;
+			children = (
+				69095CC51D43624500ACBFED /* TXInputMethod */,
+				69095CDD1D43627300ACBFED /* TXKeyboardViewController */,
+				69095CC41D43624500ACBFED /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		69095CC41D43624500ACBFED /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				69095CC31D43624500ACBFED /* TXInputMethod.app */,
+				69095CDC1D43627300ACBFED /* TXKeyboardViewController.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		69095CC51D43624500ACBFED /* TXInputMethod */ = {
+			isa = PBXGroup;
+			children = (
+				69095CC61D43624500ACBFED /* AppDelegate.swift */,
+				69095CC81D43624500ACBFED /* TXViewController.swift */,
+				69095CCA1D43624500ACBFED /* Main.storyboard */,
+				69095CCD1D43624500ACBFED /* Assets.xcassets */,
+				69095CCF1D43624500ACBFED /* LaunchScreen.storyboard */,
+				69095CD21D43624500ACBFED /* Info.plist */,
+			);
+			path = TXInputMethod;
+			sourceTree = "<group>";
+		};
+		69095CDD1D43627300ACBFED /* TXKeyboardViewController */ = {
+			isa = PBXGroup;
+			children = (
+				69095CDE1D43627300ACBFED /* KeyboardViewController.swift */,
+				69095CE81D43628A00ACBFED /* AlphabetPlaneView.swift */,
+				69095CEA1D43629800ACBFED /* CustomButton.swift */,
+				69095CE01D43627300ACBFED /* Info.plist */,
+			);
+			path = TXKeyboardViewController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		69095CC21D43624500ACBFED /* TXInputMethod */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 69095CD51D43624500ACBFED /* Build configuration list for PBXNativeTarget "TXInputMethod" */;
+			buildPhases = (
+				69095CBF1D43624500ACBFED /* Sources */,
+				69095CC01D43624500ACBFED /* Frameworks */,
+				69095CC11D43624500ACBFED /* Resources */,
+				69095CE71D43627300ACBFED /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				69095CE21D43627300ACBFED /* PBXTargetDependency */,
+			);
+			name = TXInputMethod;
+			productName = TXInputMethod;
+			productReference = 69095CC31D43624500ACBFED /* TXInputMethod.app */;
+			productType = "com.apple.product-type.application";
+		};
+		69095CDB1D43627300ACBFED /* TXKeyboardViewController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 69095CE41D43627300ACBFED /* Build configuration list for PBXNativeTarget "TXKeyboardViewController" */;
+			buildPhases = (
+				69095CD81D43627300ACBFED /* Sources */,
+				69095CD91D43627300ACBFED /* Frameworks */,
+				69095CDA1D43627300ACBFED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TXKeyboardViewController;
+			productName = TXKeyboardViewController;
+			productReference = 69095CDC1D43627300ACBFED /* TXKeyboardViewController.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		69095CBB1D43624500ACBFED /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = zhhz;
+				TargetAttributes = {
+					69095CC21D43624500ACBFED = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					69095CDB1D43627300ACBFED = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 69095CBE1D43624500ACBFED /* Build configuration list for PBXProject "TXInputMethod" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 69095CBA1D43624500ACBFED;
+			productRefGroup = 69095CC41D43624500ACBFED /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				69095CC21D43624500ACBFED /* TXInputMethod */,
+				69095CDB1D43627300ACBFED /* TXKeyboardViewController */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		69095CC11D43624500ACBFED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69095CD11D43624500ACBFED /* LaunchScreen.storyboard in Resources */,
+				69095CCE1D43624500ACBFED /* Assets.xcassets in Resources */,
+				69095CCC1D43624500ACBFED /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69095CDA1D43627300ACBFED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		69095CBF1D43624500ACBFED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69095CC91D43624500ACBFED /* TXViewController.swift in Sources */,
+				69095CC71D43624500ACBFED /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69095CD81D43627300ACBFED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69095CE91D43628A00ACBFED /* AlphabetPlaneView.swift in Sources */,
+				69095CDF1D43627300ACBFED /* KeyboardViewController.swift in Sources */,
+				69095CEB1D43629800ACBFED /* CustomButton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		69095CE21D43627300ACBFED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 69095CDB1D43627300ACBFED /* TXKeyboardViewController */;
+			targetProxy = 69095CE11D43627300ACBFED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		69095CCA1D43624500ACBFED /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				69095CCB1D43624500ACBFED /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		69095CCF1D43624500ACBFED /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				69095CD01D43624500ACBFED /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		69095CD31D43624500ACBFED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		69095CD41D43624500ACBFED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		69095CD61D43624500ACBFED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = TXInputMethod/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = zhhz.TXInputMethod;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		69095CD71D43624500ACBFED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = TXInputMethod/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = zhhz.TXInputMethod;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		69095CE51D43627300ACBFED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TXKeyboardViewController/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = zhhz.TXInputMethod.TXInputMethod;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		69095CE61D43627300ACBFED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TXKeyboardViewController/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = zhhz.TXInputMethod.TXInputMethod;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		69095CBE1D43624500ACBFED /* Build configuration list for PBXProject "TXInputMethod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69095CD31D43624500ACBFED /* Debug */,
+				69095CD41D43624500ACBFED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		69095CD51D43624500ACBFED /* Build configuration list for PBXNativeTarget "TXInputMethod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69095CD61D43624500ACBFED /* Debug */,
+				69095CD71D43624500ACBFED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		69095CE41D43627300ACBFED /* Build configuration list for PBXNativeTarget "TXKeyboardViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69095CE51D43627300ACBFED /* Debug */,
+				69095CE61D43627300ACBFED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 69095CBB1D43624500ACBFED /* Project object */;
+}
