@@ -16,7 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle());
+        let mainViewController = mainStoryBoard.instantiateInitialViewController();
+        
+        // Set root view controller and make windows visible
+        self.window!.rootViewController = mainViewController;
+        self.window?.makeKeyAndVisible();
+        
         return true
+
     }
 
     func applicationWillResignActive(application: UIApplication) {
