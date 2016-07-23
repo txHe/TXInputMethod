@@ -290,19 +290,19 @@ class KeyboardViewController: UIInputViewController
         if(shiftFlag == SHIFT_TYPE.SHIFT_LOWERALWAYS) //如果原来是纯小写，单机后转换当前字母大写
         {
             shiftFlag = SHIFT_TYPE.SHIFT_UPPERONCE;
-            txAlphabetPlaneView.buttonShift.setNeedsDisplay()
+            self.txAlphabetPlaneView.buttonShift.setNeedsDisplay();
         }
         else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERONCE) //如果是当前字母大写，则转换成纯小写
         {
             shiftFlag = SHIFT_TYPE.SHIFT_LOWERALWAYS;
-            txAlphabetPlaneView.buttonShift.setNeedsDisplay()
+            self.txAlphabetPlaneView.buttonShift.setNeedsDisplay()
         }
         else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERALWAYS)
         {
             shiftFlag = SHIFT_TYPE.SHIFT_LOWERALWAYS;
-            txAlphabetPlaneView.buttonShift.setNeedsDisplay()
+            self.txAlphabetPlaneView.buttonShift.setNeedsDisplay();
         }
-        
+        self.upgradeAlphabetKeyboard();
     }
     /*---------------------------双击shift键---------------------------*/
     func doubleShift()
@@ -310,11 +310,41 @@ class KeyboardViewController: UIInputViewController
         if(shiftFlag != SHIFT_TYPE.SHIFT_UPPERALWAYS)
         {
             shiftFlag = SHIFT_TYPE.SHIFT_UPPERALWAYS;
-            txAlphabetPlaneView.buttonShift.setNeedsDisplay()
+            self.txAlphabetPlaneView.buttonShift.setNeedsDisplay();
         }
-        
+        self.upgradeAlphabetKeyboard();
     }
     
+    /*---------------------------更新字母键盘上的字母---------------------------*/
+    func upgradeAlphabetKeyboard()
+    {
+        var alphabetsLower = ["q","w","e","r","t",
+                              "y","u","i","o","p",
+                              "a","s","d","f","g",
+                              "h","j","k","l","z",
+                              "x","c","v","b","n","m"];
+        var alphabetsUpper = ["Q","W","E","R","T",
+                              "Y","U","I","O","P",
+                              "A","S","D","F","G",
+                              "H","J","K","L","Z",
+                              "X","C","V","B","N","M"];
+        if(shiftFlag == SHIFT_TYPE.SHIFT_LOWERALWAYS)
+        {
+            for i in 0...25
+            {
+                self.txAlphabetPlaneView.buttonAlphabet[i].setTitle(alphabetsLower[i]);
+                self.txAlphabetPlaneView.buttonAlphabet[i].setNeedsDisplay();
+            }
+        }
+        else
+        {
+            for i in 0...25
+            {
+                self.txAlphabetPlaneView.buttonAlphabet[i].setTitle(alphabetsUpper[i]);
+                self.txAlphabetPlaneView.buttonAlphabet[i].setNeedsDisplay();
+            }
+        }
+    }
     /*---------------------------按英文键响应---------------------------*/
     func didTapAlphabetButton(title:String)
     {
@@ -333,11 +363,11 @@ class KeyboardViewController: UIInputViewController
         }
         else if (shiftFlag == SHIFT_TYPE.SHIFT_UPPERALWAYS)
         {
-            inputstring = title.uppercaseString
+            inputstring = title.uppercaseString;
         }
         
-        let proxy = textDocumentProxy
-        proxy.insertText(inputstring)
+        let proxy = textDocumentProxy;
+        proxy.insertText(inputstring);
         
         //putKeyboardViewsWithPlaneType(1); // 展示英文输入界面
     }
@@ -345,48 +375,48 @@ class KeyboardViewController: UIInputViewController
     /*---------------------------按空格---------------------------*/
     func didTapSpace()
     {
-        let proxy = textDocumentProxy
-        proxy.insertText(" ")
+        let proxy = textDocumentProxy;
+        proxy.insertText(" ");
     }
     
     /*---------------------------按换行键---------------------------*/
     func didTapEnter()
     {
-        let proxy = textDocumentProxy
-        proxy.insertText("\n")
+        let proxy = textDocumentProxy;
+        proxy.insertText("\n");
     }
     
     /*---------------------------按地球键---------------------------*/
     func didTapEarthButton()
     {
-        advanceToNextInputMode()
+        advanceToNextInputMode();
     }
     
     /*---------------------------长按加速删除---------------------------*/
     func longDelete()
     {
-        timer = NSTimer(timeInterval: 0.1, target: self, selector: #selector(UIKeyInput.deleteBackward), userInfo: nil, repeats: true)
-        NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
+        timer = NSTimer(timeInterval: 0.1, target: self, selector: #selector(UIKeyInput.deleteBackward), userInfo: nil, repeats: true);
+        NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode);
     }
     
     /*---------------------------当你按下一个删除键时，删除一个字符---------------------------*/
     func deleteOneCharacter()
     {
-        let proxy = textDocumentProxy
-        proxy.deleteBackward()
+        let proxy = textDocumentProxy;
+        proxy.deleteBackward();
     }
     
     /*---------------------------删除一个字符---------------------------*/
     func deleteBackward()
     {
-        let proxy = textDocumentProxy
-        proxy.deleteBackward()
+        let proxy = textDocumentProxy;
+        proxy.deleteBackward();
     }
     
     /*--------------------------设置键盘高度---------------------------*/
     func keyboardHeight()->Float
     {
-        var keyboardheight:Float
+        var keyboardheight:Float;
         
         switch screenWidth
         {
@@ -427,7 +457,7 @@ class KeyboardViewController: UIInputViewController
     
     override func didReceiveMemoryWarning()
     {
-        super.didReceiveMemoryWarning()
+        super.didReceiveMemoryWarning();
         // Dispose of any resources that can be recreated
     }
     
@@ -435,27 +465,10 @@ class KeyboardViewController: UIInputViewController
     {
         // The app is about to change the document's contents. Perform any preparation here.
     }
-    /*
-    override func textDidChange(textInput: UITextInput?)
-    {
-        // The app has just changed the document's contents, the document context has been updated.
-        
-        var textColor: UIColor
-        let proxy = self.textDocumentProxy
-        if proxy.keyboardAppearance == UIKeyboardAppearance.Dark
-        {
-            textColor = UIColor.whiteColor()
-        }
-        else
-        {
-            textColor = UIColor.blackColor()
-        }
-        self.nextButton.setTitleColor(textColor, forState: .Normal)
-    }*/
     
     override func updateViewConstraints()
     {
-        super.updateViewConstraints()
+        super.updateViewConstraints();
         
         // Add custom view sizing constraints here
     }

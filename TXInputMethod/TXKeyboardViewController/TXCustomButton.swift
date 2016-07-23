@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 
+
 /*---------------------------普通按键的自定义View---------------------------*/
 class NormalButton: UIView
 {
@@ -21,7 +22,7 @@ class NormalButton: UIView
         
         self.fillColor = UIColor.whiteColor();//初始化为白色
         self.translatesAutoresizingMaskIntoConstraints = false;
-        self.layer.cornerRadius = 3.0;
+        self.layer.cornerRadius = 6.0;
         self.clipsToBounds = true;
         self.layer.masksToBounds = true;
         self.multipleTouchEnabled = false
@@ -36,7 +37,7 @@ class NormalButton: UIView
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
         super.touchesBegan(touches, withEvent: event)
-        self.addSubview(Back_Button_View(frame: self.bounds))
+        self.addSubview(BackButtonView(frame: self.bounds))
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
@@ -48,12 +49,12 @@ class NormalButton: UIView
         }
     }
     
-    func setfillcolor(color:UIColor)
+    func setFillcolor(color:UIColor)
     {
         self.fillColor = color;
     }
     
-    func settitle(title:String)
+    func setTitle(title:String)
     {
         self.buttonTitle = title;
     }
@@ -64,8 +65,10 @@ class NormalButton: UIView
         let fontSize = UIFont.systemFontOfSize(18.0); //设置字体大小
         let fontColor = UIColor.blackColor(); //设置字体颜色
         let context:CGContextRef = UIGraphicsGetCurrentContext()!
+        let backgroundcolor = UIColor(red: 209/255.0, green: 213/255.0, blue: 219/255.0, alpha: 1.0);
+        CGContextSetFillColorWithColor(context, backgroundcolor.CGColor);
         
-        let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 3.0)
+        let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 6.0)
         let paragraphStyle:NSMutableParagraphStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail;
         paragraphStyle.alignment = NSTextAlignment.Center;
@@ -92,7 +95,7 @@ class DeleteButton:UIView
         super.init(frame: frame);
         
         self.translatesAutoresizingMaskIntoConstraints = false;
-        self.layer.cornerRadius = 3.0;
+        self.layer.cornerRadius = 6.0;
         self.multipleTouchEnabled = false
         self.exclusiveTouch = true;
     }
@@ -105,7 +108,7 @@ class DeleteButton:UIView
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
         super.touchesBegan(touches, withEvent: event)
-        self.addSubview(Back_Button_View(frame: self.bounds))
+        self.addSubview(BackButtonView(frame: self.bounds))
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
@@ -120,7 +123,9 @@ class DeleteButton:UIView
     override func drawRect(rect: CGRect)
     {
         let context:CGContextRef = UIGraphicsGetCurrentContext()!
-        let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 3.0)
+        let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 6.0)
+        let backgroundcolor = UIColor(red: 209/255.0, green: 213/255.0, blue: 219/255.0, alpha: 1.0);
+        CGContextSetFillColorWithColor(context, backgroundcolor.CGColor);
         
         CGContextFillRect(context, rect)
         UIColor.lightGrayColor().setFill()
@@ -170,7 +175,7 @@ class EarthButton:UIView
         super.init(frame: frame);
         
         self.translatesAutoresizingMaskIntoConstraints = false;
-        self.layer.cornerRadius = 3.0;
+        self.layer.cornerRadius = 6.0;
         self.multipleTouchEnabled = false;
         self.exclusiveTouch = true;
     }
@@ -183,8 +188,9 @@ class EarthButton:UIView
     override func drawRect(rect: CGRect)
     {
         let context:CGContextRef = UIGraphicsGetCurrentContext()!;
-        let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 3.0);
-        //CGContextSetFillColorWithColor(context, backgroundcolor.CGColor);
+        let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 6.0);
+        let backgroundcolor = UIColor(red: 209/255.0, green: 213/255.0, blue: 219/255.0, alpha: 1.0);
+        CGContextSetFillColorWithColor(context, backgroundcolor.CGColor);
         
         CGContextFillRect(context, rect);
         UIColor.lightGrayColor().setFill();
@@ -241,7 +247,7 @@ class ShiftButton: UIView
         self.clipsToBounds = true;
         self.layer.masksToBounds = true;
         self.translatesAutoresizingMaskIntoConstraints = false;
-        self.layer.cornerRadius = 3.0;
+        self.layer.cornerRadius = 6.0;
         self.multipleTouchEnabled = false;
         self.exclusiveTouch = true;
     }
@@ -256,9 +262,9 @@ class ShiftButton: UIView
         if(shiftFlag == SHIFT_TYPE.SHIFT_LOWERALWAYS)
         {
             let context:CGContextRef = UIGraphicsGetCurrentContext()!;
-            let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 3.0);
-            
-            //CGContextSetFillColorWithColor(context, backgroundcolor.CGColor)
+            let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 6.0);
+            let backgroundcolor = UIColor(red: 209/255.0, green: 213/255.0, blue: 219/255.0, alpha: 1.0);
+            CGContextSetFillColorWithColor(context, backgroundcolor.CGColor);
             
             CGContextFillRect(context, rect);
             UIColor.lightGrayColor().setFill();
@@ -297,8 +303,9 @@ class ShiftButton: UIView
             let tapFillColor:UIColor = UIColor.blackColor();
             
             let context:CGContextRef = UIGraphicsGetCurrentContext()!
-            let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 3.0);
-            //CGContextSetFillColorWithColor(context, backgroundcolor.CGColor)
+            let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 6.0);
+            let backgroundcolor = UIColor(red: 209/255.0, green: 213/255.0, blue: 219/255.0, alpha: 1.0);
+            CGContextSetFillColorWithColor(context, backgroundcolor.CGColor);
             
             CGContextFillRect(context, rect);
             UIColor.lightGrayColor().setFill();
@@ -340,9 +347,10 @@ class ShiftButton: UIView
         else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERALWAYS)
         {
             let tapFillColor:UIColor = UIColor.blackColor();
-            
             let context:CGContextRef = UIGraphicsGetCurrentContext()!;
-            let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 3.0);
+            let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 6.0);
+            let backgroundcolor = UIColor(red: 209/255.0, green: 213/255.0, blue: 219/255.0, alpha: 1.0);
+            CGContextSetFillColorWithColor(context, backgroundcolor.CGColor);
             
             CGContextFillRect(context, rect);
             UIColor.lightGrayColor().setFill();
@@ -391,14 +399,14 @@ class ShiftButton: UIView
 
 
 /*---------------------------字母和数字按键的按键背景---------------------------*/
-class Back_Button_View: UIView
+class BackButtonView: UIView
 {
     override init(frame: CGRect)
     {
         super.init(frame: frame);
         
         self.translatesAutoresizingMaskIntoConstraints = false;
-        self.layer.cornerRadius = 3.0;
+        self.layer.cornerRadius = 6.0;
         self.alpha = 0.35;
         self.multipleTouchEnabled = false
         self.exclusiveTouch = true;
@@ -413,7 +421,7 @@ class Back_Button_View: UIView
     {
         let backgroundcolor = UIColor(red: 209/255.0, green: 213/255.0, blue: 219/255.0, alpha: 1.0)
         let context:CGContextRef = UIGraphicsGetCurrentContext()!
-        let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 3.0)
+        let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 6.0)
         
         CGContextSetFillColorWithColor(context, backgroundcolor.CGColor)
         CGContextFillRect(context, rect)
