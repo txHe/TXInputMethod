@@ -77,9 +77,8 @@
 
 为了实现按键的效果，重载touchesBegan，touchesEnd这两个方法，然后在其中添加backView（背景图，暗一点),即可实现按键效果。
 
-``
-
-/*---------------------------普通按键的自定义View---------------------------*/
+```
+//普通按键的自定义View
 class NormalButton: UIView
 {
 	var buttonTitle:String!; //按键上的title
@@ -127,7 +126,7 @@ class NormalButton: UIView
         self.buttonTitle = title;
     }
     
-    /*---------------------------自主绘制按键---------------------------*/
+    //自主绘制按键
     override func drawRect(rect: CGRect)
     {
         let fontSize = UIFont.systemFontOfSize(18.0); //设置字体大小
@@ -156,7 +155,7 @@ class NormalButton: UIView
    
 }
 
-``
+```
 
 再展示下地球键的绘制吧，这个比较复杂点，因为很多开发者可能没接触过，挺有意思的，但是呢，要想方便，直接贴图就是了。
 
