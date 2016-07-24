@@ -78,6 +78,8 @@
 为了实现按键的效果，重载touchesBegan，touchesEnd这两个方法，然后在其中添加backView（背景图，暗一点),即可实现按键效果。
 
 <code>
+```
+</code>
 /*---------------------------普通按键的自定义View---------------------------*/
 class NormalButton: UIView
 {
@@ -228,6 +230,8 @@ class EarthButton:UIView
     }
     
 }
+<code>
+```
 </code>
 
 **界面布局**
