@@ -75,7 +75,7 @@
 
 为了解决这些问题，所以本项目都是用自定义View来实现button的效果，自己绘制传入的字符。代码如下：
 
-为了实现按键的效果，重载touchesBegan，touchesEnd这两个方法，然后在其中添加backView（背景图，暗一点),即可实现按键效果。
+为了实现按键的效果，重载touchesBegan，touchesEnd这两个方法，然后在其中添加backView（背景图，暗一点),即可实现按键效果。</br>
 
 	/*---------------------------普通按键的自定义View---------------------------*/
 	class NormalButton: UIView
@@ -99,7 +99,62 @@
 	    {
 	        super.init(coder: aDecoder);
 	    }
+	    
+	    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
+	    {
+	        super.touchesBegan(touches, withEvent: event)
+	        self.addSubview(BackButtonView(frame: self.bounds))
+	    }
+	    
+	    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
+	    {
+	        super.touchesEnded(touches, withEvent: event)
+	        for v in self.subviews
+	        {
+	            v.removeFromSuperview();
+	        }
+	    }
+	    
+	    func setFillcolor(color:UIColor)
+	    {
+	        self.fillColor = color;
+	    }
+	    
+	    func setTitle(title:String)
+	    {
+	        self.buttonTitle = title;
+	    }
+	    
+	    /*---------------------------自主绘制按键---------------------------*/
+	    override func drawRect(rect: CGRect)
+	    {
+	        let fontSize = UIFont.systemFontOfSize(18.0); //设置字体大小
+	        let fontColor = UIColor.blackColor(); //设置字体颜色
+	        let context:CGContextRef = UIGraphicsGetCurrentContext()!
+	        let backgroundcolor = UIColor(red: 209/255.0, green: 213/255.0, blue: 219/255.0, alpha: 1.0);
+	        CGContextSetFillColorWithColor(context, backgroundcolor.CGColor);
+	        
+	        let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 6.0)
+	        let paragraphStyle:NSMutableParagraphStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+	        paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail;
+	        paragraphStyle.alignment = NSTextAlignment.Center;
+	        let titleAttr:NSDictionary = [NSFontAttributeName:fontSize,NSForegroundColorAttributeName:fontColor,NSParagraphStyleAttributeName:paragraphStyle];
+	        let titleSize = self.buttonTitle.sizeWithAttributes(titleAttr as? [String : AnyObject]);
+	        
+	        let float_x_pos = (rect.size.width - titleSize.width)/2;
+	        let float_y_pos = (rect.size.height - titleSize.height)/2;
+	        let point_title = CGPoint(x: float_x_pos,y: float_y_pos);
+	        
+	        CGContextFillRect(context, rect);
+	        self.fillColor.setFill()
+	        roundedRect .fillWithBlendMode(CGBlendMode.Normal, alpha: 1)
+	        
+	        self.buttonTitle.drawAtPoint(point_title, withAttributes: titleAttr as? [String : AnyObject]);
+	    }
+	   
+	}
 
+</br>
 
 再展示下地球键的绘制吧，这个比较复杂点，因为很多开发者可能没接触过，挺有意思的，但是呢，要想方便，直接贴图就是了。
 
