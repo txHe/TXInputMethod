@@ -78,156 +78,157 @@
 为了实现按键的效果，重载touchesBegan，touchesEnd这两个方法，然后在其中添加backView（背景图，暗一点),即可实现按键效果。
 
 ```
-	        /*---------------------------普通按键的自定义View---------------------------*/
-		class NormalButton: UIView
-		{
-		    var buttonTitle:String!; //按键上的title
-		    var fillColor:UIColor! //填充背景色
-		    
-		    override init(frame: CGRect)
-		    {
-		        super.init(frame: frame);
-		        
-		        self.fillColor = UIColor.whiteColor();//初始化为白色
-		        self.translatesAutoresizingMaskIntoConstraints = false;
-		        self.layer.cornerRadius = 6.0;
-		        self.clipsToBounds = true;
-		        self.layer.masksToBounds = true;
-		        self.multipleTouchEnabled = false
-		        self.exclusiveTouch = true;
-		    }
-		    
-		    required init?(coder aDecoder: NSCoder)
-		    {
-		        super.init(coder: aDecoder);
-		    }
-		    
-		    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
-		    {
-		        super.touchesBegan(touches, withEvent: event)
-		        self.addSubview(BackButtonView(frame: self.bounds))
-		    }
-		    
-		    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
-		    {
-		        super.touchesEnded(touches, withEvent: event)
-		        for v in self.subviews
-		        {
-		            v.removeFromSuperview();
-		        }
-		    }
-		    
-		    func setFillcolor(color:UIColor)
-		    {
-		        self.fillColor = color;
-		    }
-		    
-		    func setTitle(title:String)
-		    {
-		        self.buttonTitle = title;
-		    }
-		    
-		    /*---------------------------自主绘制按键---------------------------*/
-		    override func drawRect(rect: CGRect)
-		    {
-		        let fontSize = UIFont.systemFontOfSize(18.0); //设置字体大小
-		        let fontColor = UIColor.blackColor(); //设置字体颜色
-		        let context:CGContextRef = UIGraphicsGetCurrentContext()!
-		        let backgroundcolor = UIColor(red: 209/255.0, green: 213/255.0, blue: 219/255.0, alpha: 1.0);
-		        CGContextSetFillColorWithColor(context, backgroundcolor.CGColor);
-		        
-		        let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 6.0)
-		        let paragraphStyle:NSMutableParagraphStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
-		        paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail;
-		        paragraphStyle.alignment = NSTextAlignment.Center;
-		        let titleAttr:NSDictionary = [NSFontAttributeName:fontSize,NSForegroundColorAttributeName:fontColor,NSParagraphStyleAttributeName:paragraphStyle];
-		        let titleSize = self.buttonTitle.sizeWithAttributes(titleAttr as? [String : AnyObject]);
-		        
-		        let float_x_pos = (rect.size.width - titleSize.width)/2;
-		        let float_y_pos = (rect.size.height - titleSize.height)/2;
-		        let point_title = CGPoint(x: float_x_pos,y: float_y_pos);
-		        
-		        CGContextFillRect(context, rect);
-		        self.fillColor.setFill()
-		        roundedRect .fillWithBlendMode(CGBlendMode.Normal, alpha: 1)
-		        
-		        self.buttonTitle.drawAtPoint(point_title, withAttributes: titleAttr as? [String : AnyObject]);
-		    }
-		}
+/*---------------------------普通按键的自定义View---------------------------*/
+class NormalButton: UIView
+{
+	var buttonTitle:String!; //按键上的title
+	var fillColor:UIColor! //填充背景色
+	override init(frame: CGRect)
+    {
+        super.init(frame: frame);
+        
+        self.fillColor = UIColor.whiteColor();//初始化为白色
+        self.translatesAutoresizingMaskIntoConstraints = false;
+        self.layer.cornerRadius = 6.0;
+        self.clipsToBounds = true;
+        self.layer.masksToBounds = true;
+        self.multipleTouchEnabled = false
+        self.exclusiveTouch = true;
+    }
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder);
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
+    {
+        super.touchesBegan(touches, withEvent: event)
+        self.addSubview(BackButtonView(frame: self.bounds))
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
+    {
+        super.touchesEnded(touches, withEvent: event)
+        for v in self.subviews
+        {
+            v.removeFromSuperview();
+        }
+    }
+    
+    func setFillcolor(color:UIColor)
+    {
+        self.fillColor = color;
+    }
+    
+    func setTitle(title:String)
+    {
+        self.buttonTitle = title;
+    }
+    
+    /*---------------------------自主绘制按键---------------------------*/
+    override func drawRect(rect: CGRect)
+    {
+        let fontSize = UIFont.systemFontOfSize(18.0); //设置字体大小
+        let fontColor = UIColor.blackColor(); //设置字体颜色
+        let context:CGContextRef = UIGraphicsGetCurrentContext()!
+        let backgroundcolor = UIColor(red: 209/255.0, green: 213/255.0, blue: 219/255.0, alpha: 1.0);
+        CGContextSetFillColorWithColor(context, backgroundcolor.CGColor);
+        
+        let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 6.0)
+        let paragraphStyle:NSMutableParagraphStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+        paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail;
+        paragraphStyle.alignment = NSTextAlignment.Center;
+        let titleAttr:NSDictionary = [NSFontAttributeName:fontSize,NSForegroundColorAttributeName:fontColor,NSParagraphStyleAttributeName:paragraphStyle];
+        let titleSize = self.buttonTitle.sizeWithAttributes(titleAttr as? [String : AnyObject]);
+        
+        let float_x_pos = (rect.size.width - titleSize.width)/2;
+        let float_y_pos = (rect.size.height - titleSize.height)/2;
+        let point_title = CGPoint(x: float_x_pos,y: float_y_pos);
+        
+        CGContextFillRect(context, rect);
+        self.fillColor.setFill()
+        roundedRect .fillWithBlendMode(CGBlendMode.Normal, alpha: 1)
+        
+        self.buttonTitle.drawAtPoint(point_title, withAttributes: titleAttr as? [String : AnyObject]);
+    }
+   
+}
 ```
 
 再展示下地球键的绘制吧，这个比较复杂点，因为很多开发者可能没接触过，挺有意思的，但是呢，要想方便，直接贴图就是了。
 
-	/*---------------------------地球按键(输入法切换)自绘制---------------------------*/
-	class EarthButton:UIView
-	{
-	    override init(frame: CGRect)
-	    {
-	        super.init(frame: frame);
-	        
-	        self.translatesAutoresizingMaskIntoConstraints = false;
-	        self.layer.cornerRadius = 6.0;
-	        self.multipleTouchEnabled = false;
-	        self.exclusiveTouch = true;
-	    }
-	    
-	    required init?(coder aDecoder: NSCoder)
-	    {
-	        super.init(coder: aDecoder);
-	    }
-	    
-	    override func drawRect(rect: CGRect)
-	    {
-	        let context:CGContextRef = UIGraphicsGetCurrentContext()!;
-	        let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 6.0);
-	        let backgroundcolor = UIColor(red: 209/255.0, green: 213/255.0, blue: 219/255.0, alpha: 1.0);
-	        CGContextSetFillColorWithColor(context, backgroundcolor.CGColor);
-	        
-	        CGContextFillRect(context, rect);
-	        UIColor.lightGrayColor().setFill();
-	        roundedRect .fillWithBlendMode(CGBlendMode.Normal, alpha: 1);
-	        
-	        let size:CGSize = rect.size;
-	        let r:CGFloat =  CGFloat(12); //(size.height - 12) / 2
-	        let p1:CGPoint = CGPointMake(rect.origin.x + size.width / 2, rect.origin.y + size.height / 2 );//圆心
-	        let p2:CGPoint  = CGPointMake(p1.x, p1.y - r * sqrt(2));
-	        let p3:CGPoint = CGPointMake(p1.x, p1.y + r * sqrt(2));
-	        let p4:CGPoint = CGPointMake(p1.x - r*3/4, p1.y);
-	        let p5:CGPoint = CGPointMake(p1.x + r*3/4, p1.y);
-	        
-	        CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor);//设置画笔颜色
-	        CGContextSetLineWidth(context, 1.0);//设置线条粗细
-	        
-	        //顺时针画圆
-	        CGContextAddArc(context, p1.x, p1.y, r, 0, CGFloat(M_PI * 2), 0);
-	        
-	        CGContextStrokePath(context);
-	        
-	        //画上方的弧线
-	        CGContextAddArc(context,p2.x,p2.y,r , CGFloat(M_PI/4), CGFloat(M_PI*3/4),0);
-	        CGContextStrokePath(context);
-	        //画下方的弧线
-	        CGContextAddArc(context,p3.x,p3.y,r , -CGFloat(M_PI*3/4), -CGFloat(M_PI/4),0);
-	        CGContextStrokePath(context);
-	        //画右方的弧线
-	        CGContextAddArc(context,p4.x,p4.y,r * 5 / 4, -atan(4/3), atan(4/3),0);
-	        CGContextStrokePath(context);
-	        //画左方的弧线
-	        CGContextAddArc(context,p5.x,p5.y,r * 5 / 4, CGFloat(M_PI - atan(4/3)), CGFloat(M_PI + atan(4/3)),0);
-	        CGContextStrokePath(context);
-	        //画从上到下的直线
-	        CGContextMoveToPoint(context,p1.x,p1.y - r);
-	        CGContextAddLineToPoint(context, p1.x, p1.y + r);
-	        CGContextStrokePath(context);
-	        //画从左到右的直线
-	        CGContextMoveToPoint(context,p1.x - r ,p1.y);
-	        CGContextAddLineToPoint(context, p1.x + r, p1.y);
-	        CGContextStrokePath(context);
-	        
-	    }
-	    
-	}
-
+```
+/*---------------------------地球按键(输入法切换)自绘制---------------------------*/
+class EarthButton:UIView
+{
+    override init(frame: CGRect)
+    {
+        super.init(frame: frame);
+        
+        self.translatesAutoresizingMaskIntoConstraints = false;
+        self.layer.cornerRadius = 6.0;
+        self.multipleTouchEnabled = false;
+        self.exclusiveTouch = true;
+    }
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder);
+    }
+    
+    override func drawRect(rect: CGRect)
+    {
+        let context:CGContextRef = UIGraphicsGetCurrentContext()!;
+        let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 6.0);
+        let backgroundcolor = UIColor(red: 209/255.0, green: 213/255.0, blue: 219/255.0, alpha: 1.0);
+        CGContextSetFillColorWithColor(context, backgroundcolor.CGColor);
+        
+        CGContextFillRect(context, rect);
+        UIColor.lightGrayColor().setFill();
+        roundedRect .fillWithBlendMode(CGBlendMode.Normal, alpha: 1);
+        
+        let size:CGSize = rect.size;
+        let r:CGFloat =  CGFloat(12); //(size.height - 12) / 2
+        let p1:CGPoint = CGPointMake(rect.origin.x + size.width / 2, rect.origin.y + size.height / 2 );//圆心
+        let p2:CGPoint  = CGPointMake(p1.x, p1.y - r * sqrt(2));
+        let p3:CGPoint = CGPointMake(p1.x, p1.y + r * sqrt(2));
+        let p4:CGPoint = CGPointMake(p1.x - r*3/4, p1.y);
+        let p5:CGPoint = CGPointMake(p1.x + r*3/4, p1.y);
+        
+        CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor);//设置画笔颜色
+        CGContextSetLineWidth(context, 1.0);//设置线条粗细
+        
+        //顺时针画圆
+        CGContextAddArc(context, p1.x, p1.y, r, 0, CGFloat(M_PI * 2), 0);
+        
+        CGContextStrokePath(context);
+        
+        //画上方的弧线
+        CGContextAddArc(context,p2.x,p2.y,r , CGFloat(M_PI/4), CGFloat(M_PI*3/4),0);
+        CGContextStrokePath(context);
+        //画下方的弧线
+        CGContextAddArc(context,p3.x,p3.y,r , -CGFloat(M_PI*3/4), -CGFloat(M_PI/4),0);
+        CGContextStrokePath(context);
+        //画右方的弧线
+        CGContextAddArc(context,p4.x,p4.y,r * 5 / 4, -atan(4/3), atan(4/3),0);
+        CGContextStrokePath(context);
+        //画左方的弧线
+        CGContextAddArc(context,p5.x,p5.y,r * 5 / 4, CGFloat(M_PI - atan(4/3)), CGFloat(M_PI + atan(4/3)),0);
+        CGContextStrokePath(context);
+        //画从上到下的直线
+        CGContextMoveToPoint(context,p1.x,p1.y - r);
+        CGContextAddLineToPoint(context, p1.x, p1.y + r);
+        CGContextStrokePath(context);
+        //画从左到右的直线
+        CGContextMoveToPoint(context,p1.x - r ,p1.y);
+        CGContextAddLineToPoint(context, p1.x + r, p1.y);
+        CGContextStrokePath(context);
+        
+    }
+    
+}
+```
 
 **界面布局**
 
@@ -239,91 +240,92 @@ Masonry的Swift版本是SnapKit，但是我本人觉得不太习惯。所以就�
 
 大体思路呢，是讲输入法界面分成四行单独布局，然后行与行之间再布局。就展示下第一行的布局和行与行之间布局逻辑，就是"qwertyuiop"这些字母布局。其他的代码里都有
 
-    /*---------------------------第一行内的按键的布局控制---------------------------*/
-    func addfirstrowButtonConstraints(buttons: [UIView], mainView: UIView)
+```
+/*---------------------------第一行内的按键的布局控制---------------------------*/
+func addfirstrowButtonConstraints(buttons: [UIView], mainView: UIView)
+{
+    for (index, button) in buttons.enumerate()
     {
-        for (index, button) in buttons.enumerate()
+        let topConstraint = NSLayoutConstraint(item: button, attribute: .Top, relatedBy: .Equal, toItem: mainView, attribute: .Top, multiplier: 1.0, constant: 1.0);
+        let bottomConstraint = NSLayoutConstraint(item: button, attribute: .Bottom, relatedBy: .Equal, toItem: mainView, attribute: .Bottom, multiplier: 1.0, constant: -1.0);
+        var rightConstraint : NSLayoutConstraint!;
+        var leftConstraint : NSLayoutConstraint!;
+        
+        if(index == buttons.count - 1)
         {
-            let topConstraint = NSLayoutConstraint(item: button, attribute: .Top, relatedBy: .Equal, toItem: mainView, attribute: .Top, multiplier: 1.0, constant: 1.0);
-            let bottomConstraint = NSLayoutConstraint(item: button, attribute: .Bottom, relatedBy: .Equal, toItem: mainView, attribute: .Bottom, multiplier: 1.0, constant: -1.0);
-            var rightConstraint : NSLayoutConstraint!;
-            var leftConstraint : NSLayoutConstraint!;
-            
-            if(index == buttons.count - 1)
-            {
-                rightConstraint = NSLayoutConstraint(item: button, attribute: .Right, relatedBy: .Equal, toItem: mainView, attribute: .Right, multiplier: 1.0, constant: -1.0);
-            }
-            else
-            {
-                let nextButton = buttons[index+1];
-                rightConstraint = NSLayoutConstraint(item: button, attribute: .Right, relatedBy: .Equal, toItem: nextButton, attribute: .Left,multiplier: 1.0, constant: -4.0);
-            }
-            
-            if(index == 0)
-            {
-                
-                leftConstraint = NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: mainView, attribute: .Left, multiplier: 1.0, constant: 1.0);
-                
-            }
-            else
-            {
-                let prevtButton = buttons[index-1];
-                leftConstraint = NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: prevtButton, attribute: .Right, multiplier: 1.0, constant: 4.0);
-            }
-            mainView.addConstraints([topConstraint, bottomConstraint, rightConstraint, leftConstraint]);
-            
+            rightConstraint = NSLayoutConstraint(item: button, attribute: .Right, relatedBy: .Equal, toItem: mainView, attribute: .Right, multiplier: 1.0, constant: -1.0);
+        }
+        else
+        {
+            let nextButton = buttons[index+1];
+            rightConstraint = NSLayoutConstraint(item: button, attribute: .Right, relatedBy: .Equal, toItem: nextButton, attribute: .Left,multiplier: 1.0, constant: -4.0);
         }
         
-        for i in 0...buttons.count-2
+        if(index == 0)
         {
-            let widthConstraint = NSLayoutConstraint(item: buttons[i], attribute: .Width, relatedBy: .Equal, toItem: buttons[i + 1], attribute: .Width, multiplier: 1.0, constant: 0);
-            mainView.addConstraint(widthConstraint);
+            
+            leftConstraint = NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: mainView, attribute: .Left, multiplier: 1.0, constant: 1.0);
+            
         }
-    }
-    /*---------------------------行与行之间的布局控制---------------------------*/
-    func addConstraintsToInputView(inputView: UIView, rowViews: [UIView])
-    {
-        for (index, rowView) in rowViews.enumerate()
+        else
         {
-            let rightSideConstraint = NSLayoutConstraint(item: rowView, attribute: .Right, relatedBy: .Equal, toItem: inputView, attribute: .Right, multiplier: 1.0, constant: -1);
-            
-            let leftConstraint = NSLayoutConstraint(item: rowView, attribute: .Left, relatedBy: .Equal, toItem: inputView, attribute: .Left, multiplier: 1.0, constant: 1);
-            
-            
-            var topConstraint: NSLayoutConstraint;
-            var bottomConstraint: NSLayoutConstraint;
-
-            if(index == 0)
-            {
-                topConstraint = NSLayoutConstraint(item: rowView, attribute: .Top, relatedBy: .Equal, toItem: inputView, attribute: .Top, multiplier: 1.0, constant: 3.0);
-            }
-            else
-            {
-                let prevRow = rowViews[index-1];
-                topConstraint = NSLayoutConstraint(item: rowView, attribute: .Top, relatedBy: .Equal, toItem: prevRow, attribute: .Bottom, multiplier: 1.0, constant: 3.0);
-            }
-
-            if(index == rowViews.count - 1)
-            {
-                bottomConstraint = NSLayoutConstraint(item: rowView, attribute: .Bottom, relatedBy: .Equal, toItem: inputView, attribute: .Bottom, multiplier: 1.0, constant: -1.5);
-            }
-            else
-            {
-                let nextRow = rowViews[index+1];
-                bottomConstraint = NSLayoutConstraint(item: rowView, attribute: .Bottom, relatedBy: .Equal, toItem: nextRow, attribute: .Top, multiplier: 1.0, constant: -3.0);
-            }
-            inputView.addConstraints([leftConstraint, rightSideConstraint, bottomConstraint, topConstraint]);
-
+            let prevtButton = buttons[index-1];
+            leftConstraint = NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: prevtButton, attribute: .Right, multiplier: 1.0, constant: 4.0);
         }
-        /*---------------------------行与行之间高度的限制---------------------------*/
-        let heightConstraintSecond = NSLayoutConstraint(item: rowViews[0], attribute: .Height, relatedBy: .Equal, toItem: rowViews[1], attribute: .Height, multiplier: 1.0, constant: 0);
-        let heightConstraintThird = NSLayoutConstraint(item: rowViews[1], attribute: .Height, relatedBy: .Equal, toItem: rowViews[2], attribute: .Height, multiplier: 1.0, constant: 0);
-        let heightConstraintFourth = NSLayoutConstraint(item: rowViews[2], attribute: .Height, relatedBy: .Equal, toItem: rowViews[3], attribute: .Height, multiplier: 1.0, constant: 0);
-        
-        inputView.addConstraints([heightConstraintSecond, heightConstraintThird, heightConstraintFourth]);
+        mainView.addConstraints([topConstraint, bottomConstraint, rightConstraint, leftConstraint]);
         
     }
+    
+    for i in 0...buttons.count-2
+    {
+        let widthConstraint = NSLayoutConstraint(item: buttons[i], attribute: .Width, relatedBy: .Equal, toItem: buttons[i + 1], attribute: .Width, multiplier: 1.0, constant: 0);
+        mainView.addConstraint(widthConstraint);
+    }
+}
+/*---------------------------行与行之间的布局控制---------------------------*/
+func addConstraintsToInputView(inputView: UIView, rowViews: [UIView])
+{
+    for (index, rowView) in rowViews.enumerate()
+    {
+        let rightSideConstraint = NSLayoutConstraint(item: rowView, attribute: .Right, relatedBy: .Equal, toItem: inputView, attribute: .Right, multiplier: 1.0, constant: -1);
+        
+        let leftConstraint = NSLayoutConstraint(item: rowView, attribute: .Left, relatedBy: .Equal, toItem: inputView, attribute: .Left, multiplier: 1.0, constant: 1);
+        
+        
+        var topConstraint: NSLayoutConstraint;
+        var bottomConstraint: NSLayoutConstraint;
 
+        if(index == 0)
+        {
+            topConstraint = NSLayoutConstraint(item: rowView, attribute: .Top, relatedBy: .Equal, toItem: inputView, attribute: .Top, multiplier: 1.0, constant: 3.0);
+        }
+        else
+        {
+            let prevRow = rowViews[index-1];
+            topConstraint = NSLayoutConstraint(item: rowView, attribute: .Top, relatedBy: .Equal, toItem: prevRow, attribute: .Bottom, multiplier: 1.0, constant: 3.0);
+        }
+
+        if(index == rowViews.count - 1)
+        {
+            bottomConstraint = NSLayoutConstraint(item: rowView, attribute: .Bottom, relatedBy: .Equal, toItem: inputView, attribute: .Bottom, multiplier: 1.0, constant: -1.5);
+        }
+        else
+        {
+            let nextRow = rowViews[index+1];
+            bottomConstraint = NSLayoutConstraint(item: rowView, attribute: .Bottom, relatedBy: .Equal, toItem: nextRow, attribute: .Top, multiplier: 1.0, constant: -3.0);
+        }
+        inputView.addConstraints([leftConstraint, rightSideConstraint, bottomConstraint, topConstraint]);
+
+    }
+    /*---------------------------行与行之间高度的限制---------------------------*/
+    let heightConstraintSecond = NSLayoutConstraint(item: rowViews[0], attribute: .Height, relatedBy: .Equal, toItem: rowViews[1], attribute: .Height, multiplier: 1.0, constant: 0);
+    let heightConstraintThird = NSLayoutConstraint(item: rowViews[1], attribute: .Height, relatedBy: .Equal, toItem: rowViews[2], attribute: .Height, multiplier: 1.0, constant: 0);
+    let heightConstraintFourth = NSLayoutConstraint(item: rowViews[2], attribute: .Height, relatedBy: .Equal, toItem: rowViews[3], attribute: .Height, multiplier: 1.0, constant: 0);
+    
+    inputView.addConstraints([heightConstraintSecond, heightConstraintThird, heightConstraintFourth]);
+    
+}
+```
   
 <h4>4.2按键事件响应</h4> 
 
@@ -339,108 +341,119 @@ Masonry的Swift版本是SnapKit，但是我本人觉得不太习惯。所以就�
 
 **5.UIButton更占系统的资源，使用view自定制的按键，绘制效率更高。**
 
-
-	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
-	{
-	     super.touchesBegan(touches, withEvent: event)
-	     //手指触屏
-	}
-	override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
-    {
-        super.touchesEnded(touches, withEvent: event)
-        //手指离屏
-    }
+```
+override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
+{
+    super.touchesBegan(touches, withEvent: event)
+    //手指触屏
+}
+override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
+{
+    super.touchesEnded(touches, withEvent: event)
+    //手指离屏
+}
+```
     
 具体可观看代码，github地址在后面。
 
 <h4>4.3大小写切换</h4>
 定义一个枚举类型，标注当前的大小写状态
 
-	//定义枚举类型标注shift按键所单击的次数
-	enum SHIFT_TYPE
-	{
-	    case SHIFT_LOWERALWAYS;//全小写
-	    case SHIFT_UPPERONCE;//首字母大写
-	    case SHIFT_UPPERALWAYS;//全大写
-	}
+```
+//定义枚举类型标注shift按键所单击的次数
+enum SHIFT_TYPE
+{
+    case SHIFT_LOWERALWAYS;//全小写
+    case SHIFT_UPPERONCE;//首字母大写
+    case SHIFT_UPPERALWAYS;//全大写
+}
+```
 
 事件：
 
-	/*---------------------------单击shift键---------------------------*/
-	 func singleShift(){
-	     if(shiftFlag == SHIFT_TYPE.SHIFT_LOWERALWAYS) //如果原来是纯小写，单机后转换当前字母大写
-	     {
-	         shiftFlag = SHIFT_TYPE.SHIFT_UPPERONCE;
-	         self.txAlphabetPlaneView.buttonShift.setNeedsDisplay();
-	     }
-	     else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERONCE) //如果是当前字母大写，则转换成纯小写
-	     {
-	         shiftFlag = SHIFT_TYPE.SHIFT_LOWERALWAYS;
-	         self.txAlphabetPlaneView.buttonShift.setNeedsDisplay()
-	     }
-	     else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERALWAYS)
-	     {
-	         shiftFlag = SHIFT_TYPE.SHIFT_LOWERALWAYS;
-	         self.txAlphabetPlaneView.buttonShift.setNeedsDisplay();
-	     }
-	     self.upgradeAlphabetKeyboard();//更新下界面上的字母
-	 }
-	 /*---------------------------双击shift键---------------------------*/
-	 func doubleShift()
-	 {
-	     if(shiftFlag != SHIFT_TYPE.SHIFT_UPPERALWAYS)
-	     {
-	         shiftFlag = SHIFT_TYPE.SHIFT_UPPERALWAYS;
-	         self.txAlphabetPlaneView.buttonShift.setNeedsDisplay();
-	     }
-	     self.upgradeAlphabetKeyboard();
-	 }
+```
+/*---------------------------单击shift键---------------------------*/
+func singleShift(){
+   if(shiftFlag == SHIFT_TYPE.SHIFT_LOWERALWAYS) //如果原来是纯小写，单机后转换当前字母大写
+   {
+       shiftFlag = SHIFT_TYPE.SHIFT_UPPERONCE;
+       self.txAlphabetPlaneView.buttonShift.setNeedsDisplay();
+   }
+   else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERONCE) //如果是当前字母大写，则转换成纯小写
+   {
+       shiftFlag = SHIFT_TYPE.SHIFT_LOWERALWAYS;
+       self.txAlphabetPlaneView.buttonShift.setNeedsDisplay()
+   }
+   else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERALWAYS)
+   {
+       shiftFlag = SHIFT_TYPE.SHIFT_LOWERALWAYS;
+       self.txAlphabetPlaneView.buttonShift.setNeedsDisplay();
+   }
+   self.upgradeAlphabetKeyboard();//更新下界面上的字母
+}
+/*---------------------------双击shift键---------------------------*/
+func doubleShift()
+{
+   if(shiftFlag != SHIFT_TYPE.SHIFT_UPPERALWAYS)
+   {
+       shiftFlag = SHIFT_TYPE.SHIFT_UPPERALWAYS;
+       self.txAlphabetPlaneView.buttonShift.setNeedsDisplay();
+   }
+   self.upgradeAlphabetKeyboard();
+}
+```
+
 <h4>4.4删除按键</h4>
 
 主要实现的就是长按删除的功能。通过设定**计时器**来实现
 
 //方法是在touesBegan中触屏delete按键时触发
 
-	deleteTime = touch.timestamp; //记录下触屏的当前时间
-	
-	//延迟0.6s后，进行长按的方法调用
-	self.performSelector(#selector(KeyboardViewController.longDelete), withObject: nil, afterDelay: 0.6);
+```
+deleteTime = touch.timestamp; //记录下触屏的当前时间
+
+//延迟0.6s后，进行长按的方法调用
+self.performSelector(#selector(KeyboardViewController.longDelete), withObject: nil, afterDelay: 0.6);
+```
 
 //长按方法
 
-    /*---------------------------长按加速删除---------------------------*/
-    func longDelete()
-    {
-        timer = NSTimer(timeInterval: 0.1, target: self, selector: #selector(UIKeyInput.deleteBackward), userInfo: nil, repeats: true);
-        NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode);
-    }
-
+```
+/*---------------------------长按加速删除---------------------------*/
+func longDelete()
+{
+    timer = NSTimer(timeInterval: 0.1, target: self, selector: #selector(UIKeyInput.deleteBackward), userInfo: nil, repeats: true);
+    NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode);
+}
+```
 
 //touchesEnd中的方法，间隔小于0.6s,则只执行短按键。手指离屏了，判断下timer是否还开着，开着就关闭掉。
-	
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
+
+```	
+override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
+{
+    super.touchesEnded(touches, withEvent: event)
+    if(deleteTime != 0.0)
     {
-        super.touchesEnded(touches, withEvent: event)
-        if(deleteTime != 0.0)
-        {
-            let diff:NSTimeInterval = (event?.timestamp)! - deleteTime;
-            
-            if(diff < 0.5)
-            {
-                deleteOneCharacter();
-                NSObject.cancelPreviousPerformRequestsWithTarget(self,selector: #selector(KeyboardViewController.longDelete),object: nil);
-            }
-            deleteTime = 0.0;
-        }
+        let diff:NSTimeInterval = (event?.timestamp)! - deleteTime;
         
-        if(timer != nil)
+        if(diff < 0.5)
         {
-            timer.invalidate();
-            timer = nil;
+            deleteOneCharacter();
             NSObject.cancelPreviousPerformRequestsWithTarget(self,selector: #selector(KeyboardViewController.longDelete),object: nil);
         }
-
+        deleteTime = 0.0;
     }
+    
+    if(timer != nil)
+    {
+        timer.invalidate();
+        timer = nil;
+        NSObject.cancelPreviousPerformRequestsWithTarget(self,selector: #selector(KeyboardViewController.longDelete),object: nil);
+    }
+
+}
+```
     
 <h3>5.第一阶段总结</h3>
 
@@ -448,5 +461,4 @@ Masonry的Swift版本是SnapKit，但是我本人觉得不太习惯。所以就�
 
 其实，实现起来，就是麻烦了点，难度并不大，不过也算提供一些参考吧，如果能点个赞(star)，就更好了，\(^o^)/~。
 
-**我的博客地址：http://www.hetianxiong.com/
-**
+**我的博客地址：http://www.hetianxiong.com/**
