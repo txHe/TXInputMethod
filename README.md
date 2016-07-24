@@ -234,6 +234,7 @@ class EarthButton:UIView
 
 **界面布局**
 
+
 这么多的按键，如何快速准确，有效的布局呢？
 
 使用autolayout,通过写constraint来设置各按键之间的依赖关系，达到快速简便布局的效果。
@@ -244,6 +245,7 @@ Masonry的Swift版本是SnapKit，但是我本人觉得不太习惯。所以就�
 
 
 <pre><code>
+
 /*---------------------------第一行内的按键的布局控制---------------------------*/
 func addfirstrowButtonConstraints(buttons: [UIView], mainView: UIView)
 {
@@ -328,7 +330,7 @@ func addConstraintsToInputView(inputView: UIView, rowViews: [UIView])
     inputView.addConstraints([heightConstraintSecond, heightConstraintThird, heightConstraintFourth]);
     
 }
-</code><pre>
+</code></pre>
   
 <h4>4.2按键事件响应</h4> 
 
@@ -345,6 +347,7 @@ func addConstraintsToInputView(inputView: UIView, rowViews: [UIView])
 **5.UIButton更占系统的资源，使用view自定制的按键，绘制效率更高。**
 
 <pre><code>
+
 override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
 {
     super.touchesBegan(touches, withEvent: event)
@@ -355,14 +358,17 @@ override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
     super.touchesEnded(touches, withEvent: event)
     //手指离屏
 }
-</code><pre>
+
+</code></pre>
     
 具体可观看代码，github地址在后面。
 
 <h4>4.3大小写切换</h4>
+
 定义一个枚举类型，标注当前的大小写状态
 
 <pre><code>
+
 //定义枚举类型标注shift按键所单击的次数
 enum SHIFT_TYPE
 {
@@ -370,11 +376,13 @@ enum SHIFT_TYPE
     case SHIFT_UPPERONCE;//首字母大写
     case SHIFT_UPPERALWAYS;//全大写
 }
+
 </code></pre>
 
 事件：
 
 <pre><code>
+
 /*---------------------------单击shift键---------------------------*/
 func singleShift(){
    if(shiftFlag == SHIFT_TYPE.SHIFT_LOWERALWAYS) //如果原来是纯小写，单机后转换当前字母大写
@@ -404,6 +412,7 @@ func doubleShift()
    }
    self.upgradeAlphabetKeyboard();
 }
+
 </code></pre>
 
 <h4>4.4删除按键</h4>
@@ -413,10 +422,12 @@ func doubleShift()
 //方法是在touesBegan中触屏delete按键时触发
 
 <pre><code>
+
 deleteTime = touch.timestamp; //记录下触屏的当前时间
 
 //延迟0.6s后，进行长按的方法调用
 self.performSelector(#selector(KeyboardViewController.longDelete), withObject: nil, afterDelay: 0.6);
+
 </code></pre>
 
 //长按方法
@@ -433,6 +444,7 @@ func longDelete()
 //touchesEnd中的方法，间隔小于0.6s,则只执行短按键。手指离屏了，判断下timer是否还开着，开着就关闭掉。
 
 <pre><code>
+
 override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
 {
     super.touchesEnded(touches, withEvent: event)
@@ -456,6 +468,7 @@ override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
     }
 
 }
+
 </code></pre>
     
 <h3>5.第一阶段总结</h3>
