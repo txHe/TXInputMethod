@@ -18,10 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input to test the method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wq6-go-Z3j">
-                                <rect key="frame" x="208" y="191" width="185" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="需要主动添加输入法：通用-&gt;键盘-&gt;键盘-&gt;添加新键盘" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Msx-UI-tJe">
+                                <rect key="frame" x="45" y="120" width="510" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z0A-kc-tV9">
@@ -29,10 +29,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="需要主动添加输入法：通用-&gt;键盘-&gt;键盘-&gt;添加新键盘" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Msx-UI-tJe">
-                                <rect key="frame" x="45" y="120" width="510" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Input to test the InputMethod" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Wq6-go-Z3j">
+                                <rect key="frame" x="20" y="191" width="486" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -41,12 +41,13 @@
                             <constraint firstItem="Msx-UI-tJe" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="5RK-uW-lvR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Msx-UI-tJe" secondAttribute="trailing" constant="25" id="GwJ-fk-5UR"/>
                             <constraint firstItem="Wq6-go-Z3j" firstAttribute="top" secondItem="Msx-UI-tJe" secondAttribute="bottom" constant="50" id="Mbq-Hi-pW6"/>
-                            <constraint firstItem="Wq6-go-Z3j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Obf-qm-NNT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Wq6-go-Z3j" secondAttribute="trailing" constant="50" id="Nau-ja-oR5"/>
                             <constraint firstItem="Z0A-kc-tV9" firstAttribute="width" secondItem="Msx-UI-tJe" secondAttribute="width" id="alQ-a7-2pV"/>
                             <constraint firstItem="Z0A-kc-tV9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="caF-3q-m1K"/>
                             <constraint firstItem="Msx-UI-tJe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="25" id="d1K-rn-dbP"/>
                             <constraint firstItem="Z0A-kc-tV9" firstAttribute="top" secondItem="Wq6-go-Z3j" secondAttribute="bottom" constant="70" id="nbh-Fs-7fq"/>
                             <constraint firstItem="Msx-UI-tJe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vId-7O-Sbe"/>
+                            <constraint firstItem="Wq6-go-Z3j" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="yKd-pU-MRZ"/>
                         </constraints>
                     </view>
                 </viewController>
