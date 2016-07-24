@@ -159,7 +159,7 @@ class NormalButton: UIView
 
 再展示下地球键的绘制吧，这个比较复杂点，因为很多开发者可能没接触过，挺有意思的，但是呢，要想方便，直接贴图就是了。
 
-```
+<pre><code>
 /*---------------------------地球按键(输入法切换)自绘制---------------------------*/
 class EarthButton:UIView
 {
@@ -229,7 +229,7 @@ class EarthButton:UIView
     }
     
 }
-```
+</code><pre>
 
 **界面布局**
 
@@ -241,7 +241,7 @@ Masonry的Swift版本是SnapKit，但是我本人觉得不太习惯。所以就�
 
 大体思路呢，是讲输入法界面分成四行单独布局，然后行与行之间再布局。就展示下第一行的布局和行与行之间布局逻辑，就是"qwertyuiop"这些字母布局。其他的代码里都有
 
-```
+<pre><code>
 /*---------------------------第一行内的按键的布局控制---------------------------*/
 func addfirstrowButtonConstraints(buttons: [UIView], mainView: UIView)
 {
@@ -326,7 +326,7 @@ func addConstraintsToInputView(inputView: UIView, rowViews: [UIView])
     inputView.addConstraints([heightConstraintSecond, heightConstraintThird, heightConstraintFourth]);
     
 }
-```
+</code><pre>
   
 <h4>4.2按键事件响应</h4> 
 
@@ -342,7 +342,7 @@ func addConstraintsToInputView(inputView: UIView, rowViews: [UIView])
 
 **5.UIButton更占系统的资源，使用view自定制的按键，绘制效率更高。**
 
-```
+<pre><code>
 override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
 {
     super.touchesBegan(touches, withEvent: event)
@@ -353,14 +353,14 @@ override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
     super.touchesEnded(touches, withEvent: event)
     //手指离屏
 }
-```
+</code><pre>
     
 具体可观看代码，github地址在后面。
 
 <h4>4.3大小写切换</h4>
 定义一个枚举类型，标注当前的大小写状态
 
-```
+<pre><code>
 //定义枚举类型标注shift按键所单击的次数
 enum SHIFT_TYPE
 {
@@ -368,11 +368,11 @@ enum SHIFT_TYPE
     case SHIFT_UPPERONCE;//首字母大写
     case SHIFT_UPPERALWAYS;//全大写
 }
-```
+</code></pre>
 
 事件：
 
-```
+<pre><code>
 /*---------------------------单击shift键---------------------------*/
 func singleShift(){
    if(shiftFlag == SHIFT_TYPE.SHIFT_LOWERALWAYS) //如果原来是纯小写，单机后转换当前字母大写
@@ -402,7 +402,7 @@ func doubleShift()
    }
    self.upgradeAlphabetKeyboard();
 }
-```
+</code></pre>
 
 <h4>4.4删除按键</h4>
 
@@ -410,27 +410,27 @@ func doubleShift()
 
 //方法是在touesBegan中触屏delete按键时触发
 
-```
+<pre><code>
 deleteTime = touch.timestamp; //记录下触屏的当前时间
 
 //延迟0.6s后，进行长按的方法调用
 self.performSelector(#selector(KeyboardViewController.longDelete), withObject: nil, afterDelay: 0.6);
-```
+</code></pre>
 
 //长按方法
 
-```
+<pre><code>
 /*---------------------------长按加速删除---------------------------*/
 func longDelete()
 {
     timer = NSTimer(timeInterval: 0.1, target: self, selector: #selector(UIKeyInput.deleteBackward), userInfo: nil, repeats: true);
     NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode);
 }
-```
+</code></pre>
 
 //touchesEnd中的方法，间隔小于0.6s,则只执行短按键。手指离屏了，判断下timer是否还开着，开着就关闭掉。
 
-```
+<pre><code>
 override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
 {
     super.touchesEnded(touches, withEvent: event)
@@ -454,7 +454,7 @@ override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
     }
 
 }
-```
+</code></pre>
     
 <h3>5.第一阶段总结</h3>
 
