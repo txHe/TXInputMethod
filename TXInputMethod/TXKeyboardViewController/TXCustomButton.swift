@@ -6,6 +6,23 @@
 //  Copyright © 2016年 zhhz. All rights reserved.
 //
 
+/*
+ *
+ * 亟待完善：提供各按键的背景颜色，整体键盘的背景颜色，字体颜色，字体大小，按键背景颜色等一些自定义“皮肤”组件
+ *
+ */
+
+/*
+ *
+ * 该文件为自定义组件类，主要包含如下几类组件：
+ * 1.NormalButton:普通按键自绘制，包含数字、字母等字符串绘制的视图
+ * 2.DeleteButton:删除按键自绘制
+ * 3.EarthButton:地球键自绘制
+ * 4.ShiftButton:大小写按键自绘制
+ * 5.BackButtonView:背景按键，即触摸以上按键时，按键效果
+ *
+ */
+
 import UIKit
 import Foundation
 
@@ -259,7 +276,7 @@ class ShiftButton: UIView
     
     override func drawRect(rect: CGRect)
     {
-        if(shiftFlag == SHIFT_TYPE.SHIFT_LOWERALWAYS)
+        if(shiftFlag == SHIFT_TYPE.SHIFT_LOWERALWAYS)//当前键盘全小写
         {
             let context:CGContextRef = UIGraphicsGetCurrentContext()!;
             let roundedRect:UIBezierPath = UIBezierPath(roundedRect: rect, cornerRadius: 6.0);
@@ -298,7 +315,7 @@ class ShiftButton: UIView
             
             CGContextStrokePath(context);
         }
-        else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERONCE)
+        else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERONCE)//当前键盘首字母大写一次
         {
             let tapFillColor:UIColor = UIColor.blackColor();
             
@@ -344,7 +361,7 @@ class ShiftButton: UIView
             CGContextStrokePath(context);
             
         }
-        else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERALWAYS)
+        else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERALWAYS)//当前键盘全大写
         {
             let tapFillColor:UIColor = UIColor.blackColor();
             let context:CGContextRef = UIGraphicsGetCurrentContext()!;
