@@ -7,13 +7,11 @@
 //
 
 /*
- * 字母键盘
- * 功能点：
- * 1、字母键盘的布局，单击上屏
- * 2、大小写按键，切换
- * 3、删除按键（长按快速删除）
- * 4、地球键，输入法切换
- * 5、换行键
+ *
+ * 字母键盘布局类 - TXAlphabetPlaneView
+ * 1.定义字母键盘上的所有按键，字母键、地球键、大小写键、空格键和删除键等
+ * 2.按键布局，完全使用Contraints来实现AutoLayout布局，先每行自适应布局，再各行之间自适应布局
+ *
  */
 
 import UIKit
@@ -87,12 +85,14 @@ class TXAlphabetPlaneView : UIView
         super.init(coder: aDecoder)
     }
     
+    /*-----------------获取当前按键布局的高度----------------*/
     func getOriginalHeight(buttonView:UIView) -> CGFloat
     {
         
         return buttonView.frame.origin.y + buttonView.frame.size.height;
     }
     
+    /*-----------------获取当前按键布局的宽度----------------*/
     func getOriginalWidth(buttonView:UIView)->CGFloat
     {
         
