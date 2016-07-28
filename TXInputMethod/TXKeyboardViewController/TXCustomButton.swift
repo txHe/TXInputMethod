@@ -2,8 +2,8 @@
 //  CustomButton.swift
 //  iOS-ThirdParty-InputMethod
 //
-//  Created by zhhz on 16/7/23.
-//  Copyright © 2016年 zhhz. All rights reserved.
+//  Created by txHe on 16/7/23.
+//  Copyright © 2016年 txHe. All rights reserved.
 //
 
 /*
