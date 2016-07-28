@@ -98,7 +98,8 @@ class TXAlphabetPlaneView : UIView
         
         return buttonView.frame.origin.x + buttonView.frame.size.width;
     }
-
+    
+    /*-----------------获取当前布局下所有按键的宽度和高度----------------*/
     func getButtonViewSize()
     {
         var first_row_widths = [CGFloat]();

@@ -6,6 +6,13 @@
 //  Copyright © 2016年 zhhz. All rights reserved.
 //
 
+/*
+ *
+ * 键盘控制类 - KeyboardViewController
+ * 负责整个键盘的交互工作，按键->触发事件，将按键字母上屏或者触发删除、大小写、切换键盘等动作
+ *
+ */
+
 import UIKit
 
 //定义枚举类型标注shift按键所单击的次数
@@ -41,7 +48,7 @@ class KeyboardViewController: UIInputViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        
         self.keyboardType = KEYBOARD_TYPE.ALPHABET;
         self.deleteTime = 0.0;
      
@@ -51,9 +58,10 @@ class KeyboardViewController: UIInputViewController
         self.putKeyboardToView();
     }
     
+    /*-----------------将所需键盘上屏----------------*/
     func putKeyboardToView()
     {
-        if(self.keyboardType == KEYBOARD_TYPE.ALPHABET)
+        if(self.keyboardType == KEYBOARD_TYPE.ALPHABET)//字母键盘
         {
             shiftFlag = SHIFT_TYPE.SHIFT_LOWERALWAYS;
             self.txAlphabetPlaneView = TXAlphabetPlaneView(frame:CGRectMake(0, 0, screenWidth, CGFloat(keyboardHeight())));
@@ -62,6 +70,7 @@ class KeyboardViewController: UIInputViewController
         }
     }
     
+    /*-----------------开始触屏按键动作----------------*/
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
         super.touchesBegan(touches, withEvent: event)
@@ -262,6 +271,7 @@ class KeyboardViewController: UIInputViewController
         }
     }
     
+    /*-----------------结束触屏按键动作----------------*/
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
         super.touchesEnded(touches, withEvent: event)
