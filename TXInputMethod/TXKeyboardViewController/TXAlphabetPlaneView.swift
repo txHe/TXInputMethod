@@ -76,8 +76,8 @@ class TXAlphabetPlaneView : UIView
         self.getButtonViewSize();
         
         self.backgroundColor = UIColor(red: 209/255.0, green: 213/255.0, blue: 219/255.0, alpha: 1.0);
-        self.multipleTouchEnabled = false;
-        self.exclusiveTouch = true;
+        self.isMultipleTouchEnabled = false;
+        self.isExclusiveTouch = true;
     }
     
     required init?(coder aDecoder: NSCoder)
@@ -86,14 +86,14 @@ class TXAlphabetPlaneView : UIView
     }
     
     /*-----------------获取当前按键布局的高度----------------*/
-    func getOriginalHeight(buttonView:UIView) -> CGFloat
+    func getOriginalHeight(_ buttonView:UIView) -> CGFloat
     {
         
         return buttonView.frame.origin.y + buttonView.frame.size.height;
     }
     
     /*-----------------获取当前按键布局的宽度----------------*/
-    func getOriginalWidth(buttonView:UIView)->CGFloat
+    func getOriginalWidth(_ buttonView:UIView)->CGFloat
     {
         
         return buttonView.frame.origin.x + buttonView.frame.size.width;
@@ -136,10 +136,10 @@ class TXAlphabetPlaneView : UIView
     }
     
     /*---------------------------绘制第一行---------------------------*/
-    func createFirstRowOfButtons(buttonTitles: [String],screenWidth:CGFloat) -> UIView
+    func createFirstRowOfButtons(_ buttonTitles: [String],screenWidth:CGFloat) -> UIView
     {
         var buttons = [UIView]();
-        let keyboardRowView = UIView(frame: CGRectMake(0, 0,screenWidth, 50));
+        let keyboardRowView = UIView(frame: CGRect(x: 0, y: 0,width: screenWidth, height: 50));
         
         for i in 0...buttonTitles.count-1
         {
@@ -155,12 +155,12 @@ class TXAlphabetPlaneView : UIView
     }
     
     /*---------------------------绘制第二行---------------------------*/
-    func createSecondRowOfButtons(buttonTitles: [String],screenWidth:CGFloat) -> UIView
+    func createSecondRowOfButtons(_ buttonTitles: [String],screenWidth:CGFloat) -> UIView
     {
         
         var buttons = [UIView]();
         //var tempButton:UIButton!
-        let keyboardRowView = UIView(frame: CGRectMake(0, 0,screenWidth, 50));
+        let keyboardRowView = UIView(frame: CGRect(x: 0, y: 0,width: screenWidth, height: 50));
         
         for i in 0...buttonTitles.count-1
         {
@@ -176,12 +176,12 @@ class TXAlphabetPlaneView : UIView
     }
     
     /*---------------------------绘制第三行---------------------------*/
-    func createThirdRowOfButtons(buttonTitles: [String],screenWidth:CGFloat) -> UIView {
+    func createThirdRowOfButtons(_ buttonTitles: [String],screenWidth:CGFloat) -> UIView {
         
         var buttons = [UIView]();
-        let keyboardRowView = UIView(frame: CGRectMake(0, 0,screenWidth, 50));
+        let keyboardRowView = UIView(frame: CGRect(x: 0, y: 0,width: screenWidth, height: 50));
         
-        self.buttonShift = ShiftButton(frame:CGRectMake(0.0, 0.0, 0.0, 0.0));
+        self.buttonShift = ShiftButton(frame:CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0));
         buttons.append(self.buttonShift);
         keyboardRowView.addSubview(self.buttonShift);
         
@@ -194,7 +194,7 @@ class TXAlphabetPlaneView : UIView
             keyboardRowView.addSubview(tempButton);
         }
         
-        self.buttonDelete = DeleteButton(frame:CGRectMake(0.0, 0.0, 0.0, 0.0));
+        self.buttonDelete = DeleteButton(frame:CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0));
         buttons.append(self.buttonDelete);
         keyboardRowView.addSubview(self.buttonDelete);
         
@@ -204,15 +204,15 @@ class TXAlphabetPlaneView : UIView
     }
     
     /*---------------------------绘制第四行---------------------------*/
-    func createFourthRowOfButtons(buttonTitles: [String],screenWidth:CGFloat) -> UIView {
+    func createFourthRowOfButtons(_ buttonTitles: [String],screenWidth:CGFloat) -> UIView {
         
         var buttons = [UIView]();
-        let keyboardRowView = UIView(frame: CGRectMake(0, 0,screenWidth, 50));
+        let keyboardRowView = UIView(frame: CGRect(x: 0, y: 0,width: screenWidth, height: 50));
         
         self.button123 = createNormalButtonWithTitle(buttonTitles[0]);
         buttons.append(self.button123);
         
-        self.buttonEarth = EarthButton(frame:CGRectMake(0.0, 0.0, 0.0, 0.0));
+        self.buttonEarth = EarthButton(frame:CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0));
         buttons.append(self.buttonEarth);
         
         self.buttonPunc = createNormalButtonWithTitle(buttonTitles[2]);
@@ -235,44 +235,44 @@ class TXAlphabetPlaneView : UIView
         return keyboardRowView
     }
     /*---------------------------绘制字母的按键---------------------------*/
-    func createNormalButtonWithTitle(title: String) -> NormalButton
+    func createNormalButtonWithTitle(_ title: String) -> NormalButton
     {
-        let button = NormalButton(frame:CGRectMake(0, 0.0, 0.0, 0.0));
+        let button = NormalButton(frame:CGRect(x: 0, y: 0.0, width: 0.0, height: 0.0));
         button.setTitle(title);
         
         return button;
     }
     
     /*---------------------------第一行内的按键的布局控制---------------------------*/
-    func addfirstrowButtonConstraints(buttons: [UIView], mainView: UIView)
+    func addfirstrowButtonConstraints(_ buttons: [UIView], mainView: UIView)
     {
-        for (index, button) in buttons.enumerate()
+        for (index, button) in buttons.enumerated()
         {
-            let topConstraint = NSLayoutConstraint(item: button, attribute: .Top, relatedBy: .Equal, toItem: mainView, attribute: .Top, multiplier: 1.0, constant: 1.0);
-            let bottomConstraint = NSLayoutConstraint(item: button, attribute: .Bottom, relatedBy: .Equal, toItem: mainView, attribute: .Bottom, multiplier: 1.0, constant: -1.0);
+            let topConstraint = NSLayoutConstraint(item: button, attribute: .top, relatedBy: .equal, toItem: mainView, attribute: .top, multiplier: 1.0, constant: 1.0);
+            let bottomConstraint = NSLayoutConstraint(item: button, attribute: .bottom, relatedBy: .equal, toItem: mainView, attribute: .bottom, multiplier: 1.0, constant: -1.0);
             var rightConstraint : NSLayoutConstraint!;
             var leftConstraint : NSLayoutConstraint!;
             
             if(index == buttons.count - 1)
             {
-                rightConstraint = NSLayoutConstraint(item: button, attribute: .Right, relatedBy: .Equal, toItem: mainView, attribute: .Right, multiplier: 1.0, constant: -1.0);
+                rightConstraint = NSLayoutConstraint(item: button, attribute: .right, relatedBy: .equal, toItem: mainView, attribute: .right, multiplier: 1.0, constant: -1.0);
             }
             else
             {
                 let nextButton = buttons[index+1];
-                rightConstraint = NSLayoutConstraint(item: button, attribute: .Right, relatedBy: .Equal, toItem: nextButton, attribute: .Left,multiplier: 1.0, constant: -4.0);
+                rightConstraint = NSLayoutConstraint(item: button, attribute: .right, relatedBy: .equal, toItem: nextButton, attribute: .left,multiplier: 1.0, constant: -4.0);
             }
             
             if(index == 0)
             {
                 
-                leftConstraint = NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: mainView, attribute: .Left, multiplier: 1.0, constant: 1.0);
+                leftConstraint = NSLayoutConstraint(item: button, attribute: .left, relatedBy: .equal, toItem: mainView, attribute: .left, multiplier: 1.0, constant: 1.0);
                 
             }
             else
             {
                 let prevtButton = buttons[index-1];
-                leftConstraint = NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: prevtButton, attribute: .Right, multiplier: 1.0, constant: 4.0);
+                leftConstraint = NSLayoutConstraint(item: button, attribute: .left, relatedBy: .equal, toItem: prevtButton, attribute: .right, multiplier: 1.0, constant: 4.0);
             }
             mainView.addConstraints([topConstraint, bottomConstraint, rightConstraint, leftConstraint]);
             
@@ -280,157 +280,157 @@ class TXAlphabetPlaneView : UIView
         
         for i in 0...buttons.count-2
         {
-            let widthConstraint = NSLayoutConstraint(item: buttons[i], attribute: .Width, relatedBy: .Equal, toItem: buttons[i + 1], attribute: .Width, multiplier: 1.0, constant: 0);
+            let widthConstraint = NSLayoutConstraint(item: buttons[i], attribute: .width, relatedBy: .equal, toItem: buttons[i + 1], attribute: .width, multiplier: 1.0, constant: 0);
             mainView.addConstraint(widthConstraint);
         }
     }
     
     /*---------------------------第二行内的按键的布局控制---------------------------*/
-    func addsecondrowButtonConstraints(buttons: [UIView], mainView: UIView)
+    func addsecondrowButtonConstraints(_ buttons: [UIView], mainView: UIView)
     {
-        for (index, button) in buttons.enumerate()
+        for (index, button) in buttons.enumerated()
         {
-            let topConstraint = NSLayoutConstraint(item: button, attribute: .Top, relatedBy: .Equal, toItem: mainView, attribute: .Top, multiplier: 1.0, constant: 1.0);
-            let bottomConstraint = NSLayoutConstraint(item: button, attribute: .Bottom, relatedBy: .Equal, toItem: mainView, attribute: .Bottom, multiplier: 1.0, constant: -1.0);
+            let topConstraint = NSLayoutConstraint(item: button, attribute: .top, relatedBy: .equal, toItem: mainView, attribute: .top, multiplier: 1.0, constant: 1.0);
+            let bottomConstraint = NSLayoutConstraint(item: button, attribute: .bottom, relatedBy: .equal, toItem: mainView, attribute: .bottom, multiplier: 1.0, constant: -1.0);
             var rightConstraint : NSLayoutConstraint!;
             var leftConstraint : NSLayoutConstraint!;
 
             if(index == buttons.count - 1)
             {
-                rightConstraint = NSLayoutConstraint(item: button, attribute: .Right, relatedBy: .Equal, toItem: mainView, attribute: .Right, multiplier: 1.0, constant: -10.0);
+                rightConstraint = NSLayoutConstraint(item: button, attribute: .right, relatedBy: .equal, toItem: mainView, attribute: .right, multiplier: 1.0, constant: -10.0);
             }
             else
             {
                 let nextButton = buttons[index+1];
-                rightConstraint = NSLayoutConstraint(item: button, attribute: .Right, relatedBy: .Equal, toItem: nextButton, attribute: .Left,multiplier: 1.0, constant: -4.0);
+                rightConstraint = NSLayoutConstraint(item: button, attribute: .right, relatedBy: .equal, toItem: nextButton, attribute: .left,multiplier: 1.0, constant: -4.0);
             }
             
             if(index == 0)
             {
-                leftConstraint = NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: mainView, attribute: .Left, multiplier: 1.0, constant: 10.0);
+                leftConstraint = NSLayoutConstraint(item: button, attribute: .left, relatedBy: .equal, toItem: mainView, attribute: .left, multiplier: 1.0, constant: 10.0);
             }
             else
             {
                 let prevtButton = buttons[index-1];
-                leftConstraint = NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: prevtButton, attribute: .Right, multiplier: 1.0, constant: 4.0);
+                leftConstraint = NSLayoutConstraint(item: button, attribute: .left, relatedBy: .equal, toItem: prevtButton, attribute: .right, multiplier: 1.0, constant: 4.0);
             }
             mainView.addConstraints([topConstraint, bottomConstraint, rightConstraint, leftConstraint]);
         }
         
         for i in 0...buttons.count-2
         {
-            let widthConstraint = NSLayoutConstraint(item: buttons[i], attribute: .Width, relatedBy: .Equal, toItem: buttons[i + 1], attribute: .Width, multiplier: 1.0, constant: 0);
+            let widthConstraint = NSLayoutConstraint(item: buttons[i], attribute: .width, relatedBy: .equal, toItem: buttons[i + 1], attribute: .width, multiplier: 1.0, constant: 0);
             mainView.addConstraint(widthConstraint);
         }
         
     }
     
     /*---------------------------第三行内的按键的布局控制---------------------------*/
-    func addthirdrowButtonConstraints(buttons: [UIView], mainView: UIView)
+    func addthirdrowButtonConstraints(_ buttons: [UIView], mainView: UIView)
     {
-        for (index, button) in buttons.enumerate()
+        for (index, button) in buttons.enumerated()
         {
-            let topConstraint = NSLayoutConstraint(item: button, attribute: .Top, relatedBy: .Equal, toItem: mainView, attribute: .Top, multiplier: 1.0, constant: 1.0);
-            let bottomConstraint = NSLayoutConstraint(item: button, attribute: .Bottom, relatedBy: .Equal, toItem: mainView, attribute: .Bottom, multiplier: 1.0, constant: -1.0);
+            let topConstraint = NSLayoutConstraint(item: button, attribute: .top, relatedBy: .equal, toItem: mainView, attribute: .top, multiplier: 1.0, constant: 1.0);
+            let bottomConstraint = NSLayoutConstraint(item: button, attribute: .bottom, relatedBy: .equal, toItem: mainView, attribute: .bottom, multiplier: 1.0, constant: -1.0);
             var rightConstraint : NSLayoutConstraint!;
             var leftConstraint : NSLayoutConstraint!;
 
             if(index == buttons.count - 1)
             {
-                rightConstraint = NSLayoutConstraint(item: button, attribute: .Right, relatedBy: .Equal, toItem: mainView, attribute: .Right, multiplier: 1.0, constant: -1.0);
+                rightConstraint = NSLayoutConstraint(item: button, attribute: .right, relatedBy: .equal, toItem: mainView, attribute: .right, multiplier: 1.0, constant: -1.0);
             }
             else
             {
                 let nextButton = buttons[index+1];
-                rightConstraint = NSLayoutConstraint(item: button, attribute: .Right, relatedBy: .Equal, toItem: nextButton, attribute: .Left,multiplier: 1.0, constant: -4.0);
+                rightConstraint = NSLayoutConstraint(item: button, attribute: .right, relatedBy: .equal, toItem: nextButton, attribute: .left,multiplier: 1.0, constant: -4.0);
             }
 
             if(index == 0)
             {
-                leftConstraint = NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: mainView, attribute: .Left, multiplier: 1.0, constant: 1.0);
+                leftConstraint = NSLayoutConstraint(item: button, attribute: .left, relatedBy: .equal, toItem: mainView, attribute: .left, multiplier: 1.0, constant: 1.0);
                 
             }
             else
             {
                 let prevtButton = buttons[index-1];
-                leftConstraint = NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: prevtButton, attribute: .Right, multiplier: 1.0, constant: 4.0);
+                leftConstraint = NSLayoutConstraint(item: button, attribute: .left, relatedBy: .equal, toItem: prevtButton, attribute: .right, multiplier: 1.0, constant: 4.0);
             }
             mainView.addConstraints([topConstraint, bottomConstraint, rightConstraint, leftConstraint]);
         }
         
         /*---------------------------使得最后一个与第一个按键的大小一致--------------------------*/
-        let widthConstraint_second = NSLayoutConstraint(item: buttons[buttons.count - 1], attribute: .Width, relatedBy: .Equal, toItem: buttons[0], attribute: .Width, multiplier:1.0, constant: 0);
+        let widthConstraint_second = NSLayoutConstraint(item: buttons[buttons.count - 1], attribute: .width, relatedBy: .equal, toItem: buttons[0], attribute: .width, multiplier:1.0, constant: 0);
         mainView.addConstraint(widthConstraint_second);
         
         /*---------------------------使得第2~8按键宽度一致--------------------------*/
         for i in 1...buttons.count-3
         {
-            let widthConstraint = NSLayoutConstraint(item: buttons[i], attribute: .Width, relatedBy: .Equal, toItem: buttons[i + 1], attribute: .Width, multiplier: 1.0, constant: 0);
+            let widthConstraint = NSLayoutConstraint(item: buttons[i], attribute: .width, relatedBy: .equal, toItem: buttons[i + 1], attribute: .width, multiplier: 1.0, constant: 0);
             mainView.addConstraint(widthConstraint);
         }
         
-        let widthConstraint_third = NSLayoutConstraint(item: buttons[0], attribute: .Width, relatedBy: .Equal, toItem: buttons[1], attribute: .Width, multiplier: 2.0, constant: 0);
+        let widthConstraint_third = NSLayoutConstraint(item: buttons[0], attribute: .width, relatedBy: .equal, toItem: buttons[1], attribute: .width, multiplier: 2.0, constant: 0);
         mainView.addConstraint(widthConstraint_third);
     }
     
     /*---------------------------第四行内的按键的布局控制---------------------------*/
-    func addfourthrowIndividualButtonConstraints(buttons: [UIView], mainView: UIView)
+    func addfourthrowIndividualButtonConstraints(_ buttons: [UIView], mainView: UIView)
     {
         
-        for (index, button) in buttons.enumerate()
+        for (index, button) in buttons.enumerated()
         {
-            let topConstraint = NSLayoutConstraint(item: button, attribute: .Top, relatedBy: .Equal, toItem: mainView, attribute: .Top, multiplier: 1.0, constant: 1.0);
-            let bottomConstraint = NSLayoutConstraint(item: button, attribute: .Bottom, relatedBy: .Equal, toItem: mainView, attribute: .Bottom, multiplier: 1.0, constant: -1.0);
+            let topConstraint = NSLayoutConstraint(item: button, attribute: .top, relatedBy: .equal, toItem: mainView, attribute: .top, multiplier: 1.0, constant: 1.0);
+            let bottomConstraint = NSLayoutConstraint(item: button, attribute: .bottom, relatedBy: .equal, toItem: mainView, attribute: .bottom, multiplier: 1.0, constant: -1.0);
             var rightConstraint : NSLayoutConstraint!;
             var leftConstraint : NSLayoutConstraint!;
 
             if(index == buttons.count - 1)
             {
-                rightConstraint = NSLayoutConstraint(item: button, attribute: .Right, relatedBy: .Equal, toItem: mainView, attribute: .Right, multiplier: 1.0, constant: -1.0);
+                rightConstraint = NSLayoutConstraint(item: button, attribute: .right, relatedBy: .equal, toItem: mainView, attribute: .right, multiplier: 1.0, constant: -1.0);
             }
             else
             {
                 let nextButton = buttons[index+1];
-                rightConstraint = NSLayoutConstraint(item: button, attribute: .Right, relatedBy: .Equal, toItem: nextButton, attribute: .Left,multiplier: 1.0, constant: -4.0);
+                rightConstraint = NSLayoutConstraint(item: button, attribute: .right, relatedBy: .equal, toItem: nextButton, attribute: .left,multiplier: 1.0, constant: -4.0);
             }
 
             if(index == 0)
             {
-                leftConstraint = NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: mainView, attribute: .Left, multiplier: 1.0, constant: 1.0);
+                leftConstraint = NSLayoutConstraint(item: button, attribute: .left, relatedBy: .equal, toItem: mainView, attribute: .left, multiplier: 1.0, constant: 1.0);
             }
             else
             {
                 let prevtButton = buttons[index-1];
-                leftConstraint = NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: prevtButton, attribute: .Right, multiplier: 1.0, constant: 4.0);
+                leftConstraint = NSLayoutConstraint(item: button, attribute: .left, relatedBy: .equal, toItem: prevtButton, attribute: .right, multiplier: 1.0, constant: 4.0);
             }
             
             mainView.addConstraints([topConstraint, bottomConstraint, rightConstraint, leftConstraint]);
         }
         /*---------------------------使第一个、第二个按键宽度一致---------------------------*/
 
-        let widthConstraintFirst = NSLayoutConstraint(item: buttons[0], attribute: .Width, relatedBy: .Equal, toItem: buttons[1], attribute: .Width, multiplier: 1.0, constant: 0);
+        let widthConstraintFirst = NSLayoutConstraint(item: buttons[0], attribute: .width, relatedBy: .equal, toItem: buttons[1], attribute: .width, multiplier: 1.0, constant: 0);
         
         
         /*---------------------------使得第三个按键为第二个的2/3-------------------------*/
-        let widthConstraintSecond = NSLayoutConstraint(item: buttons[2], attribute: .Width, relatedBy: .Equal, toItem: buttons[1], attribute: .Width, multiplier: 2/3, constant: 0);
+        let widthConstraintSecond = NSLayoutConstraint(item: buttons[2], attribute: .width, relatedBy: .equal, toItem: buttons[1], attribute: .width, multiplier: 2/3, constant: 0);
         
         /*---------------------------使得第四个按键为第三个按键宽度的4倍--------------------------*/
-        let widthConstraintThird = NSLayoutConstraint(item: buttons[3], attribute: .Width, relatedBy: .Equal, toItem: buttons[2], attribute: .Width, multiplier: 4.0, constant: 0);
+        let widthConstraintThird = NSLayoutConstraint(item: buttons[3], attribute: .width, relatedBy: .equal, toItem: buttons[2], attribute: .width, multiplier: 4.0, constant: 0);
         
         /*---------------------------使得第五个按键为第四个按键的2/3--------------------------*/
-        let widthConstraintFourth = NSLayoutConstraint(item: buttons[4], attribute: .Width, relatedBy: .Equal, toItem: buttons[3], attribute: .Width, multiplier: 1/2, constant: 0);
+        let widthConstraintFourth = NSLayoutConstraint(item: buttons[4], attribute: .width, relatedBy: .equal, toItem: buttons[3], attribute: .width, multiplier: 1/2, constant: 0);
         
         mainView.addConstraints([widthConstraintFirst, widthConstraintSecond, widthConstraintThird, widthConstraintFourth]);
     }
     
     /*---------------------------行与行之间的布局控制---------------------------*/
-    func addConstraintsToInputView(inputView: UIView, rowViews: [UIView])
+    func addConstraintsToInputView(_ inputView: UIView, rowViews: [UIView])
     {
-        for (index, rowView) in rowViews.enumerate()
+        for (index, rowView) in rowViews.enumerated()
         {
-            let rightSideConstraint = NSLayoutConstraint(item: rowView, attribute: .Right, relatedBy: .Equal, toItem: inputView, attribute: .Right, multiplier: 1.0, constant: -1);
+            let rightSideConstraint = NSLayoutConstraint(item: rowView, attribute: .right, relatedBy: .equal, toItem: inputView, attribute: .right, multiplier: 1.0, constant: -1);
             
-            let leftConstraint = NSLayoutConstraint(item: rowView, attribute: .Left, relatedBy: .Equal, toItem: inputView, attribute: .Left, multiplier: 1.0, constant: 1);
+            let leftConstraint = NSLayoutConstraint(item: rowView, attribute: .left, relatedBy: .equal, toItem: inputView, attribute: .left, multiplier: 1.0, constant: 1);
             
             
             var topConstraint: NSLayoutConstraint;
@@ -438,30 +438,30 @@ class TXAlphabetPlaneView : UIView
 
             if(index == 0)
             {
-                topConstraint = NSLayoutConstraint(item: rowView, attribute: .Top, relatedBy: .Equal, toItem: inputView, attribute: .Top, multiplier: 1.0, constant: 3.0);
+                topConstraint = NSLayoutConstraint(item: rowView, attribute: .top, relatedBy: .equal, toItem: inputView, attribute: .top, multiplier: 1.0, constant: 3.0);
             }
             else
             {
                 let prevRow = rowViews[index-1];
-                topConstraint = NSLayoutConstraint(item: rowView, attribute: .Top, relatedBy: .Equal, toItem: prevRow, attribute: .Bottom, multiplier: 1.0, constant: 3.0);
+                topConstraint = NSLayoutConstraint(item: rowView, attribute: .top, relatedBy: .equal, toItem: prevRow, attribute: .bottom, multiplier: 1.0, constant: 3.0);
             }
 
             if(index == rowViews.count - 1)
             {
-                bottomConstraint = NSLayoutConstraint(item: rowView, attribute: .Bottom, relatedBy: .Equal, toItem: inputView, attribute: .Bottom, multiplier: 1.0, constant: -1.5);
+                bottomConstraint = NSLayoutConstraint(item: rowView, attribute: .bottom, relatedBy: .equal, toItem: inputView, attribute: .bottom, multiplier: 1.0, constant: -1.5);
             }
             else
             {
                 let nextRow = rowViews[index+1];
-                bottomConstraint = NSLayoutConstraint(item: rowView, attribute: .Bottom, relatedBy: .Equal, toItem: nextRow, attribute: .Top, multiplier: 1.0, constant: -3.0);
+                bottomConstraint = NSLayoutConstraint(item: rowView, attribute: .bottom, relatedBy: .equal, toItem: nextRow, attribute: .top, multiplier: 1.0, constant: -3.0);
             }
             inputView.addConstraints([leftConstraint, rightSideConstraint, bottomConstraint, topConstraint]);
 
         }
         /*---------------------------行与行之间高度的限制---------------------------*/
-        let heightConstraintSecond = NSLayoutConstraint(item: rowViews[0], attribute: .Height, relatedBy: .Equal, toItem: rowViews[1], attribute: .Height, multiplier: 1.0, constant: 0);
-        let heightConstraintThird = NSLayoutConstraint(item: rowViews[1], attribute: .Height, relatedBy: .Equal, toItem: rowViews[2], attribute: .Height, multiplier: 1.0, constant: 0);
-        let heightConstraintFourth = NSLayoutConstraint(item: rowViews[2], attribute: .Height, relatedBy: .Equal, toItem: rowViews[3], attribute: .Height, multiplier: 1.0, constant: 0);
+        let heightConstraintSecond = NSLayoutConstraint(item: rowViews[0], attribute: .height, relatedBy: .equal, toItem: rowViews[1], attribute: .height, multiplier: 1.0, constant: 0);
+        let heightConstraintThird = NSLayoutConstraint(item: rowViews[1], attribute: .height, relatedBy: .equal, toItem: rowViews[2], attribute: .height, multiplier: 1.0, constant: 0);
+        let heightConstraintFourth = NSLayoutConstraint(item: rowViews[2], attribute: .height, relatedBy: .equal, toItem: rowViews[3], attribute: .height, multiplier: 1.0, constant: 0);
         
         inputView.addConstraints([heightConstraintSecond, heightConstraintThird, heightConstraintFourth]);
         

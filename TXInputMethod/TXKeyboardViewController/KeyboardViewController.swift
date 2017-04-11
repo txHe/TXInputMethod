@@ -18,20 +18,20 @@ import UIKit
 //定义枚举类型标注shift按键所单击的次数
 enum SHIFT_TYPE
 {
-    case SHIFT_LOWERALWAYS;
-    case SHIFT_UPPERONCE;
-    case SHIFT_UPPERALWAYS;
+    case shift_LOWERALWAYS;
+    case shift_UPPERONCE;
+    case shift_UPPERALWAYS;
 }
 
 //定义枚举类型标注当前键盘类型
 enum KEYBOARD_TYPE
 {
-    case ALPHABET; //字母键盘
-    case NUMBER; //数字键盘
+    case alphabet; //字母键盘
+    case number; //数字键盘
 }
 
 //定义一个全局的变量，标注单击shift按键的次数
-var shiftFlag:SHIFT_TYPE = SHIFT_TYPE.SHIFT_LOWERALWAYS;
+var shiftFlag:SHIFT_TYPE = SHIFT_TYPE.shift_LOWERALWAYS;
 
 class KeyboardViewController: UIInputViewController
 {
@@ -39,21 +39,21 @@ class KeyboardViewController: UIInputViewController
     var nextButton: UIButton!
     
     var txAlphabetPlaneView:TXAlphabetPlaneView!;//字母键盘
-    var timer:NSTimer!;
+    var timer:Timer!;
     var deleteTime:Double!;
     var keyboardType:KEYBOARD_TYPE!;
-    let screenWidth = UIScreen.mainScreen().bounds.size.width
+    let screenWidth = UIScreen.main.bounds.size.width
     let txButtonSizeGet = TXButtonSizeGet.shared;
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        self.keyboardType = KEYBOARD_TYPE.ALPHABET;
+        self.keyboardType = KEYBOARD_TYPE.alphabet;
         self.deleteTime = 0.0;
      
-        self.view.multipleTouchEnabled = false
-        self.view.exclusiveTouch = true;
+        self.view.isMultipleTouchEnabled = false
+        self.view.isExclusiveTouch = true;
         
         self.putKeyboardToView();
     }
@@ -61,19 +61,19 @@ class KeyboardViewController: UIInputViewController
     /*-----------------将所需键盘上屏----------------*/
     func putKeyboardToView()
     {
-        if(self.keyboardType == KEYBOARD_TYPE.ALPHABET)//字母键盘
+        if(self.keyboardType == KEYBOARD_TYPE.alphabet)//字母键盘
         {
-            shiftFlag = SHIFT_TYPE.SHIFT_LOWERALWAYS;
-            self.txAlphabetPlaneView = TXAlphabetPlaneView(frame:CGRectMake(0, 0, screenWidth, CGFloat(keyboardHeight())));
+            shiftFlag = SHIFT_TYPE.shift_LOWERALWAYS;
+            self.txAlphabetPlaneView = TXAlphabetPlaneView(frame:CGRect(x: 0, y: 0, width: screenWidth, height: CGFloat(keyboardHeight())));
 
             self.view.addSubview(self.txAlphabetPlaneView);
         }
     }
     
     /*-----------------开始触屏按键动作----------------*/
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        super.touchesBegan(touches, withEvent: event)
+        super.touchesBegan(touches, with: event)
         
         var row_height = txButtonSizeGet.getRowHeight(); //获取每一行的高度
         var row_button_width_first = txButtonSizeGet.getFirstRowWidth(); // 第一行的按键的宽度
@@ -85,8 +85,8 @@ class KeyboardViewController: UIInputViewController
         
         var rowIndex = 0;
         
-        let positionX = touch.locationInView(self.view).x; //index_x为所在的点的横坐标
-        let positionY = touch.locationInView(self.view).y; //y为所在点的纵坐标
+        let positionX = touch.location(in: self.view).x; //index_x为所在的点的横坐标
+        let positionY = touch.location(in: self.view).y; //y为所在点的纵坐标
         
         if(positionY > 0)
         {
@@ -109,7 +109,7 @@ class KeyboardViewController: UIInputViewController
             }
         }
         
-        if(self.keyboardType == KEYBOARD_TYPE.ALPHABET)
+        if(self.keyboardType == KEYBOARD_TYPE.alphabet)
         {
             if(rowIndex == 1)
             {
@@ -240,7 +240,7 @@ class KeyboardViewController: UIInputViewController
                 {
                     deleteTime = touch.timestamp;
                     
-                    self.performSelector(#selector(KeyboardViewController.longDelete), withObject: nil, afterDelay: 0.6);
+                    self.perform(#selector(KeyboardViewController.longDelete), with: nil, afterDelay: 0.6);
                 }
                 
             }
@@ -272,16 +272,16 @@ class KeyboardViewController: UIInputViewController
     }
     
     /*-----------------结束触屏按键动作----------------*/
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        super.touchesEnded(touches, withEvent: event)
+        super.touchesEnded(touches, with: event)
         if(deleteTime != 0.0)
         {
-            let diff:NSTimeInterval = (event?.timestamp)! - deleteTime;
+            let diff:TimeInterval = (event?.timestamp)! - deleteTime;
             if(diff < 0.5)
             {
                 deleteOneCharacter();
-                NSObject.cancelPreviousPerformRequestsWithTarget(self,selector: #selector(KeyboardViewController.longDelete),object: nil);
+                NSObject.cancelPreviousPerformRequests(withTarget: self,selector: #selector(KeyboardViewController.longDelete),object: nil);
             }
             deleteTime = 0.0;
         }
@@ -290,26 +290,26 @@ class KeyboardViewController: UIInputViewController
         {
             timer.invalidate();
             timer = nil;
-            NSObject.cancelPreviousPerformRequestsWithTarget(self,selector: #selector(KeyboardViewController.longDelete),object: nil);
+            NSObject.cancelPreviousPerformRequests(withTarget: self,selector: #selector(KeyboardViewController.longDelete),object: nil);
         }
 
     }
     
     /*---------------------------单击shift键---------------------------*/
     func singleShift(){
-        if(shiftFlag == SHIFT_TYPE.SHIFT_LOWERALWAYS) //如果原来是纯小写，单机后转换当前字母大写
+        if(shiftFlag == SHIFT_TYPE.shift_LOWERALWAYS) //如果原来是纯小写，单机后转换当前字母大写
         {
-            shiftFlag = SHIFT_TYPE.SHIFT_UPPERONCE;
+            shiftFlag = SHIFT_TYPE.shift_UPPERONCE;
             self.txAlphabetPlaneView.buttonShift.setNeedsDisplay();
         }
-        else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERONCE) //如果是当前字母大写，则转换成纯小写
+        else if(shiftFlag == SHIFT_TYPE.shift_UPPERONCE) //如果是当前字母大写，则转换成纯小写
         {
-            shiftFlag = SHIFT_TYPE.SHIFT_LOWERALWAYS;
+            shiftFlag = SHIFT_TYPE.shift_LOWERALWAYS;
             self.txAlphabetPlaneView.buttonShift.setNeedsDisplay()
         }
-        else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERALWAYS)
+        else if(shiftFlag == SHIFT_TYPE.shift_UPPERALWAYS)
         {
-            shiftFlag = SHIFT_TYPE.SHIFT_LOWERALWAYS;
+            shiftFlag = SHIFT_TYPE.shift_LOWERALWAYS;
             self.txAlphabetPlaneView.buttonShift.setNeedsDisplay();
         }
         self.upgradeAlphabetKeyboard();
@@ -317,9 +317,9 @@ class KeyboardViewController: UIInputViewController
     /*---------------------------双击shift键---------------------------*/
     func doubleShift()
     {
-        if(shiftFlag != SHIFT_TYPE.SHIFT_UPPERALWAYS)
+        if(shiftFlag != SHIFT_TYPE.shift_UPPERALWAYS)
         {
-            shiftFlag = SHIFT_TYPE.SHIFT_UPPERALWAYS;
+            shiftFlag = SHIFT_TYPE.shift_UPPERALWAYS;
             self.txAlphabetPlaneView.buttonShift.setNeedsDisplay();
         }
         self.upgradeAlphabetKeyboard();
@@ -338,7 +338,7 @@ class KeyboardViewController: UIInputViewController
                               "A","S","D","F","G",
                               "H","J","K","L","Z",
                               "X","C","V","B","N","M"];
-        if(shiftFlag == SHIFT_TYPE.SHIFT_LOWERALWAYS)
+        if(shiftFlag == SHIFT_TYPE.shift_LOWERALWAYS)
         {
             for i in 0...25
             {
@@ -356,24 +356,24 @@ class KeyboardViewController: UIInputViewController
         }
     }
     /*---------------------------按英文键响应---------------------------*/
-    func didTapAlphabetButton(title:String)
+    func didTapAlphabetButton(_ title:String)
     {
         
         var inputstring:String = "";
         
-        if(shiftFlag == SHIFT_TYPE.SHIFT_LOWERALWAYS)
+        if(shiftFlag == SHIFT_TYPE.shift_LOWERALWAYS)
         {
-            inputstring = title.lowercaseString;
+            inputstring = title.lowercased();
         }
-        else if(shiftFlag == SHIFT_TYPE.SHIFT_UPPERONCE)
+        else if(shiftFlag == SHIFT_TYPE.shift_UPPERONCE)
         {
-            shiftFlag = SHIFT_TYPE.SHIFT_LOWERALWAYS;
+            shiftFlag = SHIFT_TYPE.shift_LOWERALWAYS;
             txAlphabetPlaneView.buttonShift.setNeedsDisplay()
-            inputstring = title.uppercaseString;
+            inputstring = title.uppercased();
         }
-        else if (shiftFlag == SHIFT_TYPE.SHIFT_UPPERALWAYS)
+        else if (shiftFlag == SHIFT_TYPE.shift_UPPERALWAYS)
         {
-            inputstring = title.uppercaseString;
+            inputstring = title.uppercased();
         }
         
         let proxy = textDocumentProxy;
@@ -405,8 +405,8 @@ class KeyboardViewController: UIInputViewController
     /*---------------------------长按加速删除---------------------------*/
     func longDelete()
     {
-        timer = NSTimer(timeInterval: 0.1, target: self, selector: #selector(UIKeyInput.deleteBackward), userInfo: nil, repeats: true);
-        NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode);
+        timer = Timer(timeInterval: 0.1, target: self, selector: #selector(UIKeyInput.deleteBackward), userInfo: nil, repeats: true);
+        RunLoop.current.add(timer, forMode: RunLoopMode.defaultRunLoopMode);
     }
     
     /*---------------------------当你按下一个删除键时，删除一个字符---------------------------*/
@@ -471,7 +471,7 @@ class KeyboardViewController: UIInputViewController
         // Dispose of any resources that can be recreated
     }
     
-    override func textWillChange(textInput: UITextInput?)
+    override func textWillChange(_ textInput: UITextInput?)
     {
         // The app is about to change the document's contents. Perform any preparation here.
     }

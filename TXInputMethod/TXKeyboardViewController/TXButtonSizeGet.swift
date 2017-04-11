@@ -20,6 +20,9 @@ import UIKit
 
 class TXButtonSizeGet: NSObject
 {
+    private static var __once: () = {
+            Inner.instance = TXButtonSizeGet()
+        }()
     var row_height = [CGFloat](); //获取每一行的高度
     var row_button_width_first = [CGFloat](); // 第一行的按键的宽度
     var row_button_width_second = [CGFloat](); // 第二行的按键的宽度
@@ -29,41 +32,38 @@ class TXButtonSizeGet: NSObject
     /*---------------------------创建一个单例模式---------------------------*/
     class var shared: TXButtonSizeGet
     {
-        dispatch_once(&Inner.token)
-        {
-            Inner.instance = TXButtonSizeGet()
-        }
+        _ = TXButtonSizeGet.__once
         return Inner.instance!
     }
     
     struct Inner {
         static var instance:TXButtonSizeGet?
-        static var token:dispatch_once_t = 0;
+        static var token:Int = 0;
     }
 
     /*--------通过Set函数设置各行的参数--------*/
-    func setRowHeight(heights:[CGFloat])
+    func setRowHeight(_ heights:[CGFloat])
     {
         row_height = heights;
     }
     
-    func setFirstRowWidth(widths:[CGFloat])
+    func setFirstRowWidth(_ widths:[CGFloat])
     {
         row_button_width_first = widths;
     }
     
-    func setSecondRowWidth(widths:[CGFloat])
+    func setSecondRowWidth(_ widths:[CGFloat])
     {
         
         row_button_width_second = widths;
     }
     
-    func setThirdRowWidth(widths:[CGFloat])
+    func setThirdRowWidth(_ widths:[CGFloat])
     {
         row_button_width_third = widths;
     }
     
-    func setFourthRowWidth(widths:[CGFloat])
+    func setFourthRowWidth(_ widths:[CGFloat])
     {
         row_button_width_fourth = widths;
     }
